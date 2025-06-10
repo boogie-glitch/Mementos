@@ -53,6 +53,9 @@ TagManager:
   - name: Mod
     uniqueID: 2161985227
     locked: 0
+  - name: Water
+    uniqueID: 3986849719
+    locked: 0
   - name: Ground
     uniqueID: 1964585799
     locked: 0
