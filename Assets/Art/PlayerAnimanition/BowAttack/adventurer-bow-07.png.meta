@@ -158,10 +158,10 @@ TextureImporter:
       name: adventurer-bow-07_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 30
-        height: 28
+        width: 50
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: adventurer-bow-07_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 11
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a59375d27d57d1140800000000000000
-      internalID: 4692035953829034330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8e9d53c85549ecb4484c2668c14df2c3
     internalID: 0
     vertices: []
     indices: 
@@ -213,7 +191,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       adventurer-bow-07_0: 3363395928260744366
-      adventurer-bow-07_1: 4692035953829034330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 6176e1ca1397dfd4880f3fd7b0f2f296
+guid: d02681efff2bdf2489cf45b4c94af70e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7731644393308164925
-    second: adventurer-bow-08_0
+      213: -8349705700218236022
+    second: adventurer-air-attack-3-end-00_0
+  - first:
+      213: -5651846816876257510
+    second: adventurer-air-attack-3-end-00_1
+  - first:
+      213: 3143008232916778682
+    second: adventurer-air-attack-3-end-00_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,50 +115,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: adventurer-bow-08_0
+      name: adventurer-air-attack-3-end-00_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3316c89c915c4b60800000000000000
-      internalID: 7731644393308164925
+      spriteID: a83107f77e2ef1c80800000000000000
+      internalID: -8349705700218236022
       vertices: []
       indices: 
       edges: []
@@ -177,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fb778341eaa2d374fba94cbdacf5984b
+    spriteID: 0a092696d4d68b54fbc09af058b7fa42
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +154,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      adventurer-bow-08_0: 7731644393308164925
+      adventurer-air-attack-3-end-00_0: -8349705700218236022
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
