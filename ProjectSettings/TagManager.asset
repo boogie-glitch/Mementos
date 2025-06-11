@@ -65,14 +65,17 @@ TagManager:
   - name: Water
     uniqueID: 3986849719
     locked: 0
+  - name: Pile
+    uniqueID: 3007198217
+    locked: 0
   - name: Ground
     uniqueID: 1964585799
     locked: 0
-  - name: Grass
-    uniqueID: 2897163873
-    locked: 0
   - name: Front
     uniqueID: 2790244481
+    locked: 0
+  - name: Grass
+    uniqueID: 2897163873
     locked: 0
   m_RenderingLayers:
   - Default
