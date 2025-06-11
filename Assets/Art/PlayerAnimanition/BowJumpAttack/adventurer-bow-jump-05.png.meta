@@ -155,10 +155,10 @@ TextureImporter:
       name: adventurer-bow-jump-05_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 3
-        width: 36
-        height: 28
+        x: 0
+        y: 0
+        width: 50
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c14a1fa1ee304d745a8a90e159938464
     internalID: 0
     vertices: []
     indices: 

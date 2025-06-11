@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 2e83ac0b2f9828e489b86c1211367ac0
+guid: d02681efff2bdf2489cf45b4c94af70e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7102297422374941452
-    second: Free_0
+      213: -8349705700218236022
+    second: adventurer-air-attack-3-end-00_0
+  - first:
+      213: -5651846816876257510
+    second: adventurer-air-attack-3-end-00_1
+  - first:
+      213: 3143008232916778682
+    second: adventurer-air-attack-3-end-00_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,32 +90,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -135,30 +115,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Free_0
+      name: adventurer-air-attack-3-end-00_0
       rect:
         serializedVersion: 2
-        x: 159
+        x: 0
         y: 0
-        width: 2034
-        height: 401
+        width: 50
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c03b4d540ed609260800000000000000
-      internalID: 7102297422374941452
+      spriteID: a83107f77e2ef1c80800000000000000
+      internalID: -8349705700218236022
       vertices: []
       indices: 
       edges: []
@@ -177,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0a092696d4d68b54fbc09af058b7fa42
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +154,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Free_0: 7102297422374941452
+      adventurer-air-attack-3-end-00_0: -8349705700218236022
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

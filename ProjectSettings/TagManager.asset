@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -41,20 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background2
-    uniqueID: 3736387557
-    locked: 0
-  - name: Background1
-    uniqueID: 4103033375
-    locked: 0
   - name: Background
     uniqueID: 3528658123
     locked: 0
   - name: Foreground
     uniqueID: 1499541395
-    locked: 0
-  - name: Foreground1
-    uniqueID: 1142276777
     locked: 0
   - name: Player
     uniqueID: 342480369
@@ -62,20 +54,14 @@ TagManager:
   - name: Mod
     uniqueID: 2161985227
     locked: 0
-  - name: Water
-    uniqueID: 3986849719
-    locked: 0
-  - name: Pile
-    uniqueID: 3007198217
-    locked: 0
   - name: Ground
     uniqueID: 1964585799
     locked: 0
-  - name: Front
-    uniqueID: 2790244481
-    locked: 0
   - name: Grass
     uniqueID: 2897163873
+    locked: 0
+  - name: Front
+    uniqueID: 2790244481
     locked: 0
   m_RenderingLayers:
   - Default

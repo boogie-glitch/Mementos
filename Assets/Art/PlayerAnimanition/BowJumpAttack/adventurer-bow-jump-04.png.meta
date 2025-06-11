@@ -158,10 +158,10 @@ TextureImporter:
       name: adventurer-bow-jump-04_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 3
-        width: 28
-        height: 28
+        x: 0
+        y: 0
+        width: 50
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,33 +176,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: adventurer-bow-jump-04_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 14
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01bca17cff98d4880800000000000000
-      internalID: -8625085979694544112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a9a7b66b0957e464a9d6691b23c80fbf
     internalID: 0
     vertices: []
     indices: 
@@ -213,7 +191,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       adventurer-bow-jump-04_0: 5306089977310334232
-      adventurer-bow-jump-04_1: -8625085979694544112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

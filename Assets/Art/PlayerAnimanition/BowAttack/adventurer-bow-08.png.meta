@@ -155,10 +155,10 @@ TextureImporter:
       name: adventurer-bow-08_0
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 0
-        width: 31
-        height: 28
+        width: 50
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fb778341eaa2d374fba94cbdacf5984b
     internalID: 0
     vertices: []
     indices: 
