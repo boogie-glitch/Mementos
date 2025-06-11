@@ -129,19 +129,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1177817136389337768, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1177817136389337768, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1177817136389337768, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.61
+      value: -3.684
       objectReference: {fileID: 0}
     - target: {fileID: 1177817136389337768, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.52
+      value: -1.029
       objectReference: {fileID: 0}
     - target: {fileID: 1177817136389337768, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -844,7 +844,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0020447075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -854,7 +854,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.21, y: 0.31}
+  m_Size: {x: 0.21, y: 0.31408942}
   m_EdgeRadius: 0
 --- !u!114 &719343344
 MonoBehaviour:
@@ -870,9 +870,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 719343342}
   anim: {fileID: 719343347}
-  movespeed: 3
+  movespeed: 2
   facingRight: 1
-  jumpheight: 5
+  jumpheight: 7
   isGround: 1
 --- !u!95 &719343347
 Animator:
