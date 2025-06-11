@@ -1358,6 +1358,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1625540380
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91969824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.39262608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 46.236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268722215544109741, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050987954295313096, guid: ce03f46972be40d42802917a9e070a47, type: 3}
+      propertyPath: m_Name
+      value: Toad_animations
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce03f46972be40d42802917a9e070a47, type: 3}
 --- !u!1 &1805677529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,6 +1556,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2818107827759992276, guid: c4b40b6bd7b4c934dbbba4834d1dfc21, type: 3}
+      propertyPath: movespeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3409497310670759070, guid: c4b40b6bd7b4c934dbbba4834d1dfc21, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1556,3 +1617,4 @@ SceneRoots:
   - {fileID: 1813334303}
   - {fileID: 1805677531}
   - {fileID: 95863176192879651}
+  - {fileID: 1625540380}
