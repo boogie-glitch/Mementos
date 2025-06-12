@@ -70,11 +70,11 @@ TagManager:
   - name: Water
     uniqueID: 2311240341
     locked: 0
-  - name: Pile
-    uniqueID: 473718383
-    locked: 0
   - name: Ground
     uniqueID: 1964585799
+    locked: 0
+  - name: Pile
+    uniqueID: 473718383
     locked: 0
   - name: Front
     uniqueID: 2790244481
