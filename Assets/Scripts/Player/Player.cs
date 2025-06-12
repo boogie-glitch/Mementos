@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb; // Reference to the Rigidbody2D component for physics interactions
-    public Animator anim; // Reference to the Animator component for animations
+    [SerializeField] private Rigidbody2D rb; // Reference to the Rigidbody2D component for physics interactions
+    [SerializeField] private Animator anim; // Reference to the Animator component for animations
+    [SerializeField] private TrailRenderer trailRenderer; // Reference to the TrailRenderer component for dash effect
 
     private float movement;
     public float movespeed = 2f; // Speed of the player movement
@@ -16,15 +18,27 @@ public class Player : MonoBehaviour
     private bool isJumping; // Check if the player is currently jumping
     private bool isFalling; // Check if the player is currently falling
     
+    //Dash
+    private bool isDashing = false; // Check if the player is currently dashing
+    private bool canDash = true; // Check if the player can dash
+    private float dashSpeed = 20f; // Speed of the dash
+    private float dashTime = 0.2f; // Duration of the dash
+    private float dashCooldown = 1f; // Cooldown time after dashing
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
         anim = GetComponent<Animator>(); // Get the Animator component attached to the player
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isDashing) return; // If the player is currently dashing, skip the rest of the Update method
+
+
         movement = Input.GetAxis("Horizontal");
 
         if(Input.GetKeyDown(KeyCode.K)){
@@ -32,19 +46,23 @@ public class Player : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
             Walk(); // Call the Walk method if the A or D key is pressed
+            if(Input.GetKey(KeyCode.LeftShift)){
+                movespeed = 5f;
+            }else {
+                movespeed = 2f; // Reset movement speed when Shift is not pressed
         }
-        if(Input.GetKey(KeyCode.LeftShift)){
-            movespeed = 5f;
-        }else {
-            movespeed = 2f; // Reset movement speed when Shift is not pressed
         }
-
+        if(Input.GetKeyDown(KeyCode.L) && canDash) {
+            StartCoroutine(Dash()); // Call the Dash method if the L key is pressed and the player is not currently dashing
+        }
+        
     }
 
     // FixedUpdate is called at a fixed interval and is independent of the frame rate
     void FixedUpdate()
     {
-        
+        if(isDashing) return; // If the player is currently dashing, skip the rest of the FixedUpdate method
+
         if(Mathf.Abs(movement) > .1f){
             anim.SetFloat("Walk", 1f);
         } 
@@ -57,7 +75,6 @@ public class Player : MonoBehaviour
         else {
             anim.SetFloat("Run",0f);
         }
-
     }
     void LateUpdate(){
         if(!isGround && rb.linearVelocity.y < -0.1f){
@@ -67,6 +84,7 @@ public class Player : MonoBehaviour
         else{
             anim.SetBool("isFalling", false); // Reset the falling animation state if the player is grounded or not falling
         }
+
     }
 
     void Walk(){
@@ -95,6 +113,26 @@ public class Player : MonoBehaviour
             anim.SetBool("isJumping", true); // Set the jump animation state
        }
     }
+
+    private IEnumerator Dash()
+    {
+        canDash = false; // Disable further dashing
+        isDashing = true; // Set isDashing to true to indicate the player is currently dashing
+        anim.SetBool("isDashing", true); // Set the dashing animation state
+        float originalGravity = rb.gravityScale; // Store the original gravity scale
+        rb.gravityScale = 0; // Disable gravity during the dash
+        rb.linearVelocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, 0); // Apply a horizontal force for the dash
+        trailRenderer.emitting = true; // Enable the trail renderer to show the dash effect
+        yield return new WaitForSeconds(dashTime); // Wait for the duration of the dash
+        rb.linearVelocity = Vector2.zero; // Stop the player's movement after the dash
+        trailRenderer.emitting = false; // Disable the trail renderer after the dash
+        rb.gravityScale = originalGravity; // Restore the original gravity scale
+        isDashing = false; // Set isDashing to false to indicate the player has finished dashing
+        anim.SetBool("isDashing", false); // Reset the dashing animation state
+        yield return new WaitForSeconds(dashCooldown); // Wait for the cooldown period before allowing another dash
+        canDash = true; // Re-enable dashing after the cooldown
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Ground")) // Check if the player collides with an object tagged as "Ground"
@@ -104,6 +142,5 @@ public class Player : MonoBehaviour
             anim.SetBool("isJumping", false); // Reset the jump animation state
             anim.SetBool("isFalling", false); // Reset the falling animation state
         }
-
     }
 }
