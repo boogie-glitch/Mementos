@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer; // Reference to the TrailRenderer component for dash effect
 
     private float movement;
-    public float movespeed = 2f; // Speed of the player movement
+    public float movespeed = 3f; // Speed of the player movement
     public bool facingRight = true; // Track the direction the player is facing
 
 
@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     //Dash
     private bool isDashing = false; // Check if the player is currently dashing
     private bool canDash = true; // Check if the player can dash
-    private float dashSpeed = 20f; // Speed of the dash
-    private float dashTime = 0.2f; // Duration of the dash
+    private float dashSpeed = 7f; // Speed of the dash
+    private float dashTime = 0.4f; // Duration of the dash
     private float dashCooldown = 1f; // Cooldown time after dashing
 
 
@@ -47,9 +47,9 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
             Walk(); // Call the Walk method if the A or D key is pressed
             if(Input.GetKey(KeyCode.LeftShift)){
-                movespeed = 5f;
+                movespeed = 6f;
             }else {
-                movespeed = 2f; // Reset movement speed when Shift is not pressed
+                movespeed = 3f; // Reset movement speed when Shift is not pressed
         }
         }
         if(Input.GetKeyDown(KeyCode.L) && canDash) {
@@ -63,17 +63,17 @@ public class Player : MonoBehaviour
     {
         if(isDashing) return; // If the player is currently dashing, skip the rest of the FixedUpdate method
 
-        if(Mathf.Abs(movement) > .1f){
-            anim.SetFloat("Walk", 1f);
+        if(Input.GetKey(KeyCode.LeftShift) && Mathf.Abs(movement) > .1f){
+            anim.SetFloat("Run", 1f);
+            anim.SetFloat("Walk", 0f); // Set the walk animation to 0 when running
         } 
-        else if(Mathf.Abs(movement) < .1f){
-            anim.SetFloat("Walk", 0f);
-        }
-        if(Input.GetKey(KeyCode.LeftShift)) {
-            anim.SetFloat("Run",1f);
+        else if(Mathf.Abs(movement) > .1f){
+            anim.SetFloat("Walk",1f);
+            anim.SetFloat("Run", 0f); // Set the run animation to 0 when walking
         } 
         else {
             anim.SetFloat("Run",0f);
+            anim.SetFloat("Walk", 0f);
         }
     }
     void LateUpdate(){
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     }
 
     void Walk(){
-        transform.position += new Vector3(movement, 0f, 0f) * Time.fixedDeltaTime * movespeed; // Move the player left or right based on input
+    transform.position += new Vector3(movement, 0f, 0f) * movespeed * Time.deltaTime;
 
         if(movement < 0f && facingRight){
             transform.eulerAngles = new Vector3(0f, -180f, 0f); // Flip the player to face left
@@ -119,6 +119,8 @@ public class Player : MonoBehaviour
         canDash = false; // Disable further dashing
         isDashing = true; // Set isDashing to true to indicate the player is currently dashing
         anim.SetBool("isDashing", true); // Set the dashing animation state
+        anim.SetBool("isJumping", false); // Reset the jumping animation state
+        anim.SetBool("isFalling", false); // Reset the falling animation state
         float originalGravity = rb.gravityScale; // Store the original gravity scale
         rb.gravityScale = 0; // Disable gravity during the dash
         rb.linearVelocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, 0); // Apply a horizontal force for the dash
