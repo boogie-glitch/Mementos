@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public bool facingRight = true; // Track the direction the player is facing
 
 
-    public float jumpheight = 5f; // Height of the jump
+    public float jumpheight = 10f; // Height of the jump
     public bool isGround = true; // Check if the player is on the ground
     private bool doubleJump; // Allow for a double jump
     private bool isJumping; // Check if the player is currently jumping
@@ -88,9 +88,10 @@ public class Player : MonoBehaviour
     }
 
     void Walk(){
-    transform.position += new Vector3(movement, 0f, 0f) * movespeed * Time.deltaTime;
+        //transform.position += new Vector3(movement, 0f, 0f) * movespeed * Time.deltaTime;
+        rb.linearVelocity = new Vector2(movement * movespeed, rb.linearVelocity.y); // Apply horizontal movement to the player
 
-        if(movement < 0f && facingRight){
+        if (movement < 0f && facingRight){
             transform.eulerAngles = new Vector3(0f, -180f, 0f); // Flip the player to face left
             facingRight = false; // Update the facing direction
         } 
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
 
     void Jump(){
        if(isGround){
-            rb.linearVelocity= new Vector2(rb.linearVelocity.x, jumpheight); // Apply a vertical force to the player for jumping
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpheight); // Apply a vertical force to the player for jumping
             isGround = false; // Set isGround to false when the player jumps
             doubleJump = true; // Allow for a double jump
             anim.SetBool("isJumping", true); // Set the jump animation state
