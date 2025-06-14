@@ -218,6 +218,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1756628848030486318, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 719343350}
+    - targetCorrespondingSourceObject: {fileID: 1756628848030486318, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 719343351}
+    - targetCorrespondingSourceObject: {fileID: 1756628848030486318, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 719343354}
   m_SourcePrefab: {fileID: 100100000, guid: 5029d4192fa28e948806e98ed721ed4c, type: 3}
 --- !u!1 &427962833
 GameObject:
@@ -1016,6 +1022,34 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &719343351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719343341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78814e614fd04e04c9656b7cdb086aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  isAttacking: 0
+--- !u!114 &719343354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719343341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7dd4185dbd89e40852ad0c02234258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  isAttackingAir: 0
 --- !u!1 &1100300363
 GameObject:
   m_ObjectHideFlags: 0
