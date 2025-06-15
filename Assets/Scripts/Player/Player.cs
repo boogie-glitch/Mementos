@@ -48,9 +48,10 @@ public class Player : MonoBehaviour
             Walk(); // Call the Walk method if the A or D key is pressed
             if(Input.GetKey(KeyCode.LeftShift)){
                 movespeed = 6f;
-            }else {
+            }
+            else {
                 movespeed = 3f; // Reset movement speed when Shift is not pressed
-        }
+            }
         }
         if(Input.GetKeyDown(KeyCode.L) && canDash) {
             StartCoroutine(Dash()); // Call the Dash method if the L key is pressed and the player is not currently dashing
