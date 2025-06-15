@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float movespeed = 3f; // Speed of the player movement
     public bool facingRight = true; // Track the direction the player is facing
 
-
+    public bool isUphill = false; // Check if the player is on an uphill slope
     public float jumpheight = 10f; // Height of the jump
     public bool isGround = true; // Check if the player is on the ground
     private bool doubleJump; // Allow for a double jump
@@ -43,24 +43,45 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDashing) return; // If the player is currently dashing, skip the rest of the Update method
+        if (isDashing)
+        {
+            return; // If the player is currently dashing, skip the rest of the Update method
+        }
 
+        int groundLayer = LayerMask.GetMask("Ground");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
+
+        if (hit.collider != null)
+        { 
+            float angle = Vector2.Angle(hit.normal, Vector2.up);
+            if (angle > 0 && angle <= 45)
+            {
+                isUphill = true; // Check if the player is on an uphill slope
+            }
+        }
 
         movement = Input.GetAxis("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.K)){
+        if(Input.GetKeyDown(KeyCode.K))
+        {
             Jump(); // Call the Jump method if the space key is pressed and the player is grounded
         }
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
+
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
             Walk(); // Call the Walk method if the A or D key is pressed
-            if(Input.GetKey(KeyCode.LeftShift)){
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
                 movespeed = 6f;
             }
-            else {
+            else 
+            {
                 movespeed = 3f; // Reset movement speed when Shift is not pressed
             }
         }
-        if(Input.GetKeyDown(KeyCode.L) && canDash) {
+
+        if(Input.GetKeyDown(KeyCode.L) && canDash) 
+        {
             StartCoroutine(Dash()); // Call the Dash method if the L key is pressed and the player is not currently dashing
         }
         
@@ -84,8 +105,10 @@ public class Player : MonoBehaviour
             anim.SetFloat("Walk", 0f);
         }
     }
-    void LateUpdate(){
-        if(!isGround && rb.linearVelocity.y < -0.1f){
+    void LateUpdate()
+    {
+        if(!isGround && rb.linearVelocity.y < -0.1f)
+        {
             anim.SetBool("isJumping", false); // Reset the jumping animation state if the player is not grounded
             anim.SetBool("isFalling", true); // Set the falling animation state if the player is not grounded and moving downwards
         }
@@ -95,28 +118,39 @@ public class Player : MonoBehaviour
 
     }
 
-    void Walk(){
+    void Walk()
+    {
         //transform.position += new Vector3(movement, 0f, 0f) * movespeed * Time.deltaTime;
+        if (Mathf.Abs(movement) == 0f)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;// Stop horizontal movement if no input is detected
+        }
         rb.linearVelocity = new Vector2(movement * movespeed, rb.linearVelocity.y); // Apply horizontal movement to the player
 
-        if (movement < 0f && facingRight){
+        if (movement < 0f && facingRight) 
+        {
             transform.eulerAngles = new Vector3(0f, -180f, 0f); // Flip the player to face left
             facingRight = false; // Update the facing direction
         } 
-        else if(movement > 0f && facingRight == false){
+        else if(movement > 0f && facingRight == false)
+        {
             transform.eulerAngles = new Vector3(0f, 0f, 0f); // Flip the player to face right
             facingRight = true; // Update the facing direction
         }
     }
 
-    void Jump(){
-       if(isGround){
+    void Jump() 
+    {
+       if (isGround) 
+       {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpheight); // Apply a vertical force to the player for jumping
             isGround = false; // Set isGround to false when the player jumps
             doubleJump = true; // Allow for a double jump
             anim.SetBool("isJumping", true); // Set the jump animation state
        }
-       else if(doubleJump == true && !isGround) {
+       else if (doubleJump == true && !isGround) 
+       {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpheight); // Apply a vertical force for the double jump
             doubleJump = false; // Disable further double jumps
             anim.SetBool("isJumping", true); // Set the jump animation state
@@ -127,19 +161,25 @@ public class Player : MonoBehaviour
     {
         canDash = false; // Disable further dashing
         isDashing = true; // Set isDashing to true to indicate the player is currently dashing
+
         anim.SetBool("isDashing", true); // Set the dashing animation state
         anim.SetBool("isJumping", false); // Reset the jumping animation state
         anim.SetBool("isFalling", false); // Reset the falling animation state
+
         float originalGravity = rb.gravityScale; // Store the original gravity scale
         rb.gravityScale = 0; // Disable gravity during the dash
         rb.linearVelocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, 0); // Apply a horizontal force for the dash
+        
         trailRenderer.emitting = true; // Enable the trail renderer to show the dash effect
         yield return new WaitForSeconds(dashTime); // Wait for the duration of the dash
+        
         rb.linearVelocity = Vector2.zero; // Stop the player's movement after the dash
         trailRenderer.emitting = false; // Disable the trail renderer after the dash
+        
         rb.gravityScale = originalGravity; // Restore the original gravity scale
         isDashing = false; // Set isDashing to false to indicate the player has finished dashing
         anim.SetBool("isDashing", false); // Reset the dashing animation state
+        
         yield return new WaitForSeconds(dashCooldown); // Wait for the cooldown period before allowing another dash
         canDash = true; // Re-enable dashing after the cooldown
     }

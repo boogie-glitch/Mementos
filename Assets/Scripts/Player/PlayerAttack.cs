@@ -9,7 +9,8 @@ public class PlayerAttack : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-   private void Awake(){
+   private void Awake()
+   {
         instance = this; // Set the singleton instance to this script
    }
 
@@ -24,11 +25,13 @@ public class PlayerAttack : MonoBehaviour
         Attack();
     }
 
-    void Attack(){
-        if(Input.GetKeyDown(KeyCode.J) && !isAttacking){
+    void Attack()
+    {
+        if(Input.GetKeyDown(KeyCode.J) && !isAttacking)
+        {
             isAttacking = true; // Set the attacking flag to true
         }
     }
 
-    
+ 
 }
