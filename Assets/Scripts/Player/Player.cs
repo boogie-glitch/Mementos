@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator anim; // Reference to the Animator component for animations
     [SerializeField] private TrailRenderer trailRenderer; // Reference to the TrailRenderer component for dash effect
 
+    public static Player instance; // Singleton instance of the Player class
+
     private float movement;
     public float movespeed = 3f; // Speed of the player movement
     public bool facingRight = true; // Track the direction the player is facing
@@ -31,6 +33,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
         anim = GetComponent<Animator>(); // Get the Animator component attached to the player
 
+    }
+
+    private void Awake()
+    {
+        instance = this; // Set the singleton instance to this script
     }
 
     // Update is called once per frame
