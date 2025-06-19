@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IndleScript : StateMachineBehaviour
+public class TransitionAttack2 : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -11,18 +11,16 @@ public class IndleScript : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(PlayerAttack.instance.isAttacking){
-            PlayerAttack.instance.anim.Play("Player_Attack_1");
+        if (PlayerController.Instance.isAttacking)
+        {
+            PlayerController.Instance.anim.Play("Player_Attack_2");
         }
-
-        
-        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerAttack.instance.isAttacking = false; // Reset the attacking flag when exiting the state
+       PlayerController.Instance.isAttacking = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
