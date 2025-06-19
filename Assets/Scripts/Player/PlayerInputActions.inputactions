@@ -283,6 +283,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8ab18e8e-bbe5-46c5-8d77-7e5fec5b196f",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "41153b28-2254-4c65-b8d7-8eb34c46cdec",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",

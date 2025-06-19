@@ -13,7 +13,7 @@ public class SetBoolBehaviour : StateMachineBehaviour
     {
         if(updateOnState)
         {
-            anim.SetBool(boolName, valueOnEnter);
+            animator.SetBool(boolName, valueOnEnter);
         }
     }
 
@@ -28,7 +28,7 @@ public class SetBoolBehaviour : StateMachineBehaviour
     {
        if(updateOnState)
         {
-            anim.SetBool(boolName, valueOnEnter);
+            animator.SetBool(boolName, valueOnEnter);
         }
     }
 
@@ -49,10 +49,7 @@ public class SetBoolBehaviour : StateMachineBehaviour
     {
         if(updateOnStateMachine)
         {
-            anim.SetBool(boolname, valueOnEnter);
-        }
-        {
-            anim.SetBool(boolname, valueOnEnter);
+            animator.SetBool(boolName, valueOnEnter);
         }
     }
 
@@ -61,7 +58,7 @@ public class SetBoolBehaviour : StateMachineBehaviour
     {
        if(updateOnStateMachine)
        {
-            anim.SetBool(boolName, valueOnExit);
+            animator.SetBool(boolName, valueOnExit);
        }
     }
 }

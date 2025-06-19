@@ -7,9 +7,11 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator anim;
+    public Animator anim;
     TouchingDirections touchingDirections;
     TrailRenderer tr;
+
+    public static PlayerController Instance ;
     // Input action for player movement
 
 
@@ -19,10 +21,13 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7f;
     public float dashSpeed = 1f;
 
+
     private bool _isMoveing = false;
     private bool _isRunning = false;
     private bool _isFacingRignt = true;
     private bool _isDashing = false;
+    public bool isAttacking = false;
+
 
     [SerializeField] private float dashTime = 0.2f;
     private float dashCooldown = 0.4f;
@@ -31,20 +36,29 @@ public class PlayerController : MonoBehaviour
     private bool canAirDash = true;
 
 
+
     public float CurrentMoveSpeed 
     { 
         get
         {
-            if (!(IsMoveing && !touchingDirections.IsOnWall)) 
+            if(CanMove)
+            {
+                if (!(IsMoveing && !touchingDirections.IsOnWall)) 
+                {
+                    return 0f;
+                }
+            
+                if(IsRunning)
+                {
+                    return runSpeed;
+                } 
+                return walkSpeed;    
+                }
+            else
             {
                 return 0f;
             }
-            
-            if(IsRunning)
-            {
-                return runSpeed;
-            } 
-            return walkSpeed;         
+                 
         }
     }
 
@@ -107,22 +121,33 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
+    [SerializeField]
+    public bool CanMove{
+        get
+        {
+            return anim.GetBool(AnimationStrings.canMove);
+        }
+    }
+
+    
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         tr = GetComponent<TrailRenderer>();
+        Instance = this;
     }
 
     void Update()
     {
- 
-
         if(touchingDirections.IsGrounded)
         {
             canAirDash = true; // Reset air dash when grounded
         }
+
+        
         
     }
 
@@ -134,8 +159,9 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
         }
         anim.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);  
-    }
 
+        
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         // Handle player movement input
@@ -153,8 +179,9 @@ public class PlayerController : MonoBehaviour
         {
             return;
         } 
-
-        if (moveInput.x > 0 && !IsFacingRignt)
+        if(CanMove)
+        {
+            if (moveInput.x > 0 && !IsFacingRignt)
         {
             IsFacingRignt = true;
         }
@@ -162,6 +189,8 @@ public class PlayerController : MonoBehaviour
         {
             IsFacingRignt = false;
         }
+        }
+        
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -177,12 +206,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
-
     public void OnJump(InputAction.CallbackContext context)
     {
         // Handle player jump input
-        if(context.started && touchingDirections.IsGrounded && !IsDashing)
+        if(context.started && touchingDirections.IsGrounded && !IsDashing && CanMove)
         {
             canDoubleJump = true; // Reset double jump when grounded
             anim.SetTrigger(AnimationStrings.jumpTrigger);
@@ -242,7 +269,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            anim.SetTrigger(AnimationStrings.attackTrigger);
+            if (!isAttacking)
+            {
+                isAttacking = true;
+            }
+
         }
     }
 }
