@@ -16,10 +16,10 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   - Enemy
   - 
-  - 
+  - MovementPhysic
   - 
   - 
   - 
@@ -81,6 +81,9 @@ TagManager:
     locked: 0
   - name: Grass
     uniqueID: 2897163873
+    locked: 0
+  - name: FinishPoint
+    uniqueID: 3487718329
     locked: 0
   m_RenderingLayers:
   - Default

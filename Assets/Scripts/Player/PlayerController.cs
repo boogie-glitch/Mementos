@@ -182,13 +182,13 @@ public class PlayerController : MonoBehaviour
         if(CanMove)
         {
             if (moveInput.x > 0 && !IsFacingRignt)
-        {
-            IsFacingRignt = true;
-        }
-        else if (moveInput.x < 0 && IsFacingRignt)
-        {
-            IsFacingRignt = false;
-        }
+            {
+                IsFacingRignt = true;
+            }
+            else if (moveInput.x < 0 && IsFacingRignt)
+            {
+                IsFacingRignt = false;
+            }
         }
         
     }

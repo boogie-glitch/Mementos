@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Chapter1/Player 1.prefab.meta
+guid: daf85399394120f46a876cabac4b24cf
+========
 guid: b30f109ef621d544daab83144d070169
+>>>>>>>> 391a63ac2586d541d95717ecc59288676822533e:Assets/Prefabs/Player/Player.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
