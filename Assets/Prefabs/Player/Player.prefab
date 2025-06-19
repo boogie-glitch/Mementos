@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.25
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   walkSpeed: 3
-  runSpeed: 6
+  runSpeed: 4.75
   jumpForce: 7
   dashSpeed: 1.5
   isAttacking: 0
@@ -350,8 +350,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.010171413, y: -0.008041561}
-  m_Size: {x: 0.103591524, y: 0.28383276}
+  m_Offset: {x: 0.010171413, y: -0.009645144}
+  m_Size: {x: 0.103591524, y: 0.28703994}
   m_Direction: 0
 --- !u!114 &5680860872199708591
 MonoBehaviour:
@@ -427,8 +427,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 342480369
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Time: 0.5
   m_PreviewTimeScale: 1
