@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Ground
   - CameraBounds
+  - HPBar
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -14,11 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - CameraBounds
-  - Player
+  - Trap
   - Enemy
+  - Player
+  - CameraBounds
+  - 
   - Ground
   - MovementPhysic
   - 
@@ -85,6 +87,9 @@ TagManager:
     locked: 0
   - name: FinishPoint
     uniqueID: 3487718329
+    locked: 0
+  - name: Trap
+    uniqueID: 2695429903
     locked: 0
   m_RenderingLayers:
   - Default
