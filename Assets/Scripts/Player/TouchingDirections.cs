@@ -70,8 +70,8 @@ public class TouchingDirections : MonoBehaviour
         anim = GetComponent<Animator>();
 
         //// Loại layer CameraBounds khỏi castFilter
-        //int groundLayer = LayerMask.GetMask("Ground"); // hoặc các layer bạn muốn nhận là ground
-        //castFilter.SetLayerMask(groundLayer);
+        int groundLayer = LayerMask.GetMask("Ground"); // hoặc các layer bạn muốn nhận là ground
+        castFilter.SetLayerMask(groundLayer);
     }
 
     // Update is called once per frame

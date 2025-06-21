@@ -28,21 +28,25 @@ public class Heal : MonoBehaviour
     {
         if (healUsesLeft == 0)
         {
+            Debug.Log("No heal uses left.");
             return; // No uses left, do nothing
         }
 
         if (!context.started)
         {
+            Debug.Log("Heal action not started.");
             return; // Only trigger on action start
         }
 
         if (!canUseHeal)
         {
+            Debug.Log("Heal is on cooldown or not allowed.");
             return; // Heal is on cooldown or not allowed
         }
 
         if (playerHealth.Hp == playerHealth.MaxHp)
         {
+            Debug.Log("Player is already at full health.");
             return; // Player is already at full health
         }
 
