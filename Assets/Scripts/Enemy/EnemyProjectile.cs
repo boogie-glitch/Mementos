@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyProjectile : EnemyDamage
 {
+    [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float resetTime;
     private float lifetime;
@@ -9,6 +10,8 @@ public class EnemyProjectile : EnemyDamage
     private BoxCollider2D coll;
 
     private bool hit;
+    private float moveDirection = 1f;
+
 
     private void Awake()
     {
@@ -26,8 +29,8 @@ public class EnemyProjectile : EnemyDamage
     private void Update()
     {
         if (hit) return;
-        float movementSpeed = speed * Time.deltaTime;
-        transform.Translate(movementSpeed, 0, 0);
+        float movementoSpeed = speed * Time.deltaTime;
+        transform.Translate(Vector2.right * moveDirection * movementoSpeed);
 
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
@@ -48,5 +51,15 @@ public class EnemyProjectile : EnemyDamage
     private void Deactivate()
     {
         gameObject.SetActive(false);
+    }
+
+
+    public void SetDirection(float direction)
+    {
+        moveDirection = direction;
+        // Nếu muốn lật sprite, có thể lật scale.x ở đây
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * direction;
+        transform.localScale = scale;
     }
 }

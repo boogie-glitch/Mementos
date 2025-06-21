@@ -45,14 +45,41 @@ public class RangedEnemy : MonoBehaviour
 
         if (enemyPatrol != null)
             enemyPatrol.enabled = !PlayerInSight();
+
+
     }
 
     private void RangedAttack()
     {
         cooldownTimer = 0;
-        fireballs[FindFireball()].transform.position = firepoint.position;
+        GameObject fireball = fireballs[FindFireball()];
+        fireball.transform.position = firepoint.position;
+            float direction = Mathf.Sign(transform.localScale.x);
+
+        fireball.transform.parent = null;
+    fireball.GetComponent<EnemyProjectile>().SetDirection(direction);
+
         fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
     }
+
+
+
+
+    // private void RangedAttack()
+    // {
+    //     cooldownTimer = 0;
+    //     int fireballIndex = FindFireball();
+    //     GameObject fireball = fireballs[fireballIndex];
+    //     fireball.transform.position = firepoint.position;
+
+    //     // Tách fireball ra khỏi enemy (cho nó thành con của root scene)
+    //     fireball.transform.parent = null;
+
+    //     fireball.GetComponent<EnemyProjectile>().ActivateProjectile();
+    // }
+
+
+
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)
