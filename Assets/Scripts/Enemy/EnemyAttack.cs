@@ -6,6 +6,8 @@ public class EnemyAttack : MonoBehaviour
     private PlayerHealth playerHealth; // Reference to the player's health script
     [SerializeField]
     private Healthbar healthBar; // Reference to the player's health bar
+    [SerializeField]
+    private Animator animator; // Reference to the player's animator
 
     public void DamagePlayer()
     {
@@ -14,7 +16,6 @@ public class EnemyAttack : MonoBehaviour
         // {
             healthBar.SetValue(playerHealth.Hp - 10); // Assuming the trap deals 10 damage
             playerHealth.Damage(10);
-            var animator = GetComponent<Animator>();
             if (animator != null)
             {
                 animator.SetTrigger("Damaged");

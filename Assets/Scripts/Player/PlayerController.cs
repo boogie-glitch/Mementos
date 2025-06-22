@@ -164,6 +164,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            //moveInput = Vector2.zero; // Stop movement while attacking
+            IsMoveing = false;
+            return;
+        }
         // Handle player movement input
         moveInput = context.ReadValue<Vector2>();
         
@@ -179,7 +185,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         } 
-        if(CanMove)
+        if (CanMove)
         {
             if (moveInput.x > 0 && !IsFacingRignt)
             {
@@ -195,6 +201,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            IsRunning = false; // Stop running while attacking
+            return;
+        }
         // Handle player running input
         if (context.started)
         {
@@ -208,14 +219,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing)
+        {
+            return; // Stop jumping while attacking or dashing
+        }
         // Handle player jump input
-        if(context.started && touchingDirections.IsGrounded && !IsDashing && CanMove)
+        if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             canDoubleJump = true; // Reset double jump when grounded
             anim.SetTrigger(AnimationStrings.jumpTrigger);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        if(canDoubleJump && context.started && !touchingDirections.IsGrounded && !IsDashing)
+        if (canDoubleJump && context.started && !touchingDirections.IsGrounded)
         {
             // anim.SetTrigger(AnimationStrings.jump);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -226,12 +241,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing)
+        {
+            return; // Stop dashing while attacking or already dashing
+        }
         if (!canAirDash)
         {
             return;
         }
         
-        if (context.started && canDash && !IsDashing)
+        if (context.started && canDash)
         {
             StartCoroutine(DashCoroutine());  
         }        
@@ -267,13 +286,18 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (IsDashing || !touchingDirections.IsGrounded)
         {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-            }
-
+            return; // Stop attacking while dashing or in the air
+        }
+        if (!context.started)
+        {
+            return;
+        }
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            anim.SetBool(AnimationStrings.isAttacking, true);
         }
     }
 }

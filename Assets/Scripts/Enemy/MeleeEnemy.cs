@@ -13,7 +13,7 @@ public class MeleeEnemy : MonoBehaviour
 
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
-    private float cooldownTimer = Mathf.Infinity;
+    //private float cooldownTimer = Mathf.Infinity;
 
     //References
     [SerializeField]
