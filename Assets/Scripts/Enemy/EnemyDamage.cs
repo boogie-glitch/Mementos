@@ -24,7 +24,7 @@ public class EnemyDamage : MonoBehaviour
             }
 
             health.Damage(10);
-            var animator = GetComponent<Animator>();
+            var animator = other.GetComponent<Animator>();
             if (animator != null)
             {
                 animator.SetTrigger("Damaged");

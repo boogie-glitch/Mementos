@@ -123,6 +123,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7326869951468389731}
     m_Modifications:
+    - target: {fileID: 2075644252478395297, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+      propertyPath: m_Size.x
+      value: 0.92223275
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075644252478395297, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.015925035
+      objectReference: {fileID: 0}
     - target: {fileID: 2075644252478395298, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8522
@@ -167,20 +175,73 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2980576212564903811, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+      propertyPath: m_Size.x
+      value: 0.7868092
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980576212564903811, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1747222
+      objectReference: {fileID: 0}
     - target: {fileID: 5115668867692181592, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
       propertyPath: enemyPatrol
       value: 
       objectReference: {fileID: 6740619639451554160}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2075644252478395296, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2075644252478395324, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6065055655270228742}
   m_SourcePrefab: {fileID: 100100000, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
 --- !u!95 &8527143481459095714 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1169249605442873084, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
   m_PrefabInstance: {fileID: 7380411892744330846}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8836721008285470178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2075644252478395324, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
+  m_PrefabInstance: {fileID: 7380411892744330846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6065055655270228742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836721008285470178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81613500e5cbf2e47ac83a8163eb9aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 100
+  _hp: 0
+  animator: {fileID: 8527143481459095714}
+  Healed:
+    m_PersistentCalls:
+      m_Calls: []
+  Damaged:
+    m_PersistentCalls:
+      m_Calls: []
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7326869951468389728}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &8836721008285470204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2075644252478395298, guid: b366e71f9238f3641ba4bff03a52db87, type: 3}
