@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     TouchingDirections touchingDirections;
     TrailRenderer tr;
 
-    public static PlayerController Instance ;
+    public static PlayerController Instance;
     // Input action for player movement
 
 
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (anim.GetBool(AnimationStrings.isAttacking))
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
         {
             //moveInput = Vector2.zero; // Stop movement while attacking
             IsMoveing = false;
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (anim.GetBool(AnimationStrings.isAttacking))
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
         {
             IsRunning = false; // Stop running while attacking
             return;
@@ -219,9 +219,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing)
+        if (IsDashing)
         {
             return; // Stop jumping while attacking or dashing
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack)) 
+        {
+            return;
         }
         // Handle player jump input
         if (context.started && touchingDirections.IsGrounded && CanMove)
@@ -241,7 +245,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing)
+        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing || anim.GetBool(AnimationStrings.isRangeAttack))
         {
             return; // Stop dashing while attacking or already dashing
         }
@@ -286,13 +290,9 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (IsDashing || !touchingDirections.IsGrounded)
+        if (IsDashing || !touchingDirections.IsGrounded || anim.GetBool(AnimationStrings.isRangeAttack) || !context.started)
         {
             return; // Stop attacking while dashing or in the air
-        }
-        if (!context.started)
-        {
-            return;
         }
         if (!isAttacking)
         {
@@ -308,10 +308,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangeAttack(InputAction.CallbackContext context)
     {
-       if (context.started)
+        if (!context.started || anim.GetBool(AnimationStrings.isAttacking))
         {
-            anim.SetTrigger(AnimationStrings.rangeAttack);
+            return;
         }
+        anim.SetTrigger(AnimationStrings.rangeAttack);
+        anim.SetBool(AnimationStrings.isRangeAttack, true);
+
     }
 }
 
