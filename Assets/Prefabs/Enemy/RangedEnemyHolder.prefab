@@ -201,6 +201,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &1091525258165336174
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &2680091927181543573
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +605,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &2693200846376456564
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +807,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &3126215255201217884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1009,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &3290896010149988390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,6 +1023,7 @@ GameObject:
   - component: {fileID: 3290896010149988409}
   - component: {fileID: 3290896010149988411}
   - component: {fileID: 3290896010149988410}
+  - component: {fileID: 4822274499595803898}
   - component: {fileID: 709389704063247508}
   m_Layer: 7
   m_Name: RangedEnemy
@@ -1183,6 +1189,42 @@ MonoBehaviour:
   components:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &4822274499595803898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290896010149988390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81613500e5cbf2e47ac83a8163eb9aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 100
+  _hp: 0
+  animator: {fileID: 3290896010149988409}
+  Healed:
+    m_PersistentCalls:
+      m_Calls: []
+  Damaged:
+    m_PersistentCalls:
+      m_Calls: []
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &709389704063247508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,6 +1459,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &4294476705552098869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1661,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &5792125002715267346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1863,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &6169688270191433262
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,6 +2065,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &6889736626376465561
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,6 +2267,7 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
 --- !u!1 &7568199537014673137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,3 +2589,4 @@ MonoBehaviour:
   damage: 10
   speed: 5
   resetTime: 5
+  parent: {fileID: 0}
