@@ -21,6 +21,7 @@ public class TransitionAttack2 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerController.Instance.isAttacking = false;
+
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
