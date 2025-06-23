@@ -54,10 +54,10 @@ public class RangedEnemy : MonoBehaviour
         cooldownTimer = 0;
         GameObject fireball = fireballs[FindFireball()];
         fireball.transform.position = firepoint.position;
-            float direction = Mathf.Sign(transform.localScale.x);
+        float direction = Mathf.Sign(transform.localScale.x);
 
         fireball.transform.parent = null;
-    fireball.GetComponent<EnemyProjectile>().SetDirection(direction);
+        fireball.GetComponent<EnemyProjectile>().SetDirection(direction);
 
         fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
     }
