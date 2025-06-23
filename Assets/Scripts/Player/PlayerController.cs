@@ -300,5 +300,18 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(AnimationStrings.isAttacking, true);
         }
     }
+
+    void OnAttackingFalse()
+    {
+        isAttacking = false;
+    }
+
+    public void OnRangeAttack(InputAction.CallbackContext context)
+    {
+       if (context.started)
+        {
+            anim.SetTrigger(AnimationStrings.rangeAttack);
+        }
+    }
 }
 

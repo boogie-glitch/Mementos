@@ -9,6 +9,7 @@ TagManager:
   - CameraBounds
   - HPBar
   - Trap
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - MovementPhysic
   - FireBall
   - PlayerDamage
-  - 
+  - Arrow
   - 
   - 
   - 
@@ -90,6 +91,9 @@ TagManager:
     locked: 0
   - name: Trap
     uniqueID: 2695429903
+    locked: 0
+  - name: Arrow
+    uniqueID: 1654529631
     locked: 0
   m_RenderingLayers:
   - Default

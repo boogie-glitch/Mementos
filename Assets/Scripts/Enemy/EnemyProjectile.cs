@@ -5,9 +5,11 @@ public class EnemyProjectile : EnemyDamage
     [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float resetTime;
+    [SerializeField] private Transform parent;
     private float lifetime;
     private Animator anim;
     private BoxCollider2D coll;
+
 
     private bool hit;
     private float moveDirection = 1f;
@@ -46,11 +48,12 @@ public class EnemyProjectile : EnemyDamage
         if (anim != null)
             anim.SetTrigger("explode"); //When the object is a fireball explode it
         else
-            gameObject.SetActive(false); //When this hits any object deactivate arrow
+            Deactivate(); //When this hits any object deactivate arrow
     }
     private void Deactivate()
     {
         gameObject.SetActive(false);
+        SetParent();
     }
 
 
@@ -61,5 +64,10 @@ public class EnemyProjectile : EnemyDamage
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * direction;
         transform.localScale = scale;
+    }
+
+    public void SetParent()
+    {
+        gameObject.transform.parent = parent;
     }
 }
