@@ -308,7 +308,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangeAttack(InputAction.CallbackContext context)
     {
-        if (!context.started || anim.GetBool(AnimationStrings.isAttacking))
+        if (!context.started || anim.GetBool(AnimationStrings.isAttacking) || !touchingDirections.IsGrounded || IsDashing)
         {
             return;
         }

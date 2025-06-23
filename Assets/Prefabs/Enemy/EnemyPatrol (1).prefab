@@ -123,6 +123,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6200921399153145320}
     m_Modifications:
+    - target: {fileID: 392900416204441692, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 512212492355399742, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 561552054273058644, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 1323411642841389988, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 2157426076477105394, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
     - target: {fileID: 3290896010149988411, guid: 076bde4636103c540b8846bd470233c9, type: 3}
       propertyPath: m_Size.x
       value: 0.5522419
@@ -131,6 +151,18 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.057097733
       objectReference: {fileID: 0}
+    - target: {fileID: 5171842421492045816, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 6787856244318965381, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 7514757212869759223, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
     - target: {fileID: 7568199538312939210, guid: 076bde4636103c540b8846bd470233c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.92
@@ -175,6 +207,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangedEnemyHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 7812292316278785748, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 7919673505609390311, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
+    - target: {fileID: 9168689587017630237, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4786577667291668104}
     m_RemovedComponents:
     - {fileID: 3290896010149988410, guid: 076bde4636103c540b8846bd470233c9, type: 3}
     m_RemovedGameObjects: []
@@ -238,5 +282,10 @@ Animator:
 --- !u!4 &4786577667187634176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7568199538312939210, guid: 076bde4636103c540b8846bd470233c9, type: 3}
+  m_PrefabInstance: {fileID: 3128579414969972426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4786577667291668104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7568199538144356418, guid: 076bde4636103c540b8846bd470233c9, type: 3}
   m_PrefabInstance: {fileID: 3128579414969972426}
   m_PrefabAsset: {fileID: 0}
