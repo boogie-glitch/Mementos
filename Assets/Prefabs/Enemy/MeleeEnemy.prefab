@@ -102,10 +102,10 @@ GameObject:
   - component: {fileID: 2075644252478395298}
   - component: {fileID: 2075644252478395325}
   - component: {fileID: 2075644252478395297}
-  - component: {fileID: 2075644252478395296}
   - component: {fileID: 1169249605442873084}
   - component: {fileID: 834188011886778631}
   - component: {fileID: 8554520066019124000}
+  - component: {fileID: 2161015764541698634}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -231,23 +231,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.27769107, y: 1.3171271}
   m_EdgeRadius: 0
---- !u!114 &2075644252478395296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075644252478395324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e26f534ea637349a0bc6f44b578ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 3
-  iFramesDuration: 0
-  numberOfFlashes: 0
-  components:
-  - {fileID: 0}
 --- !u!95 &1169249605442873084
 Animator:
   serializedVersion: 7
@@ -282,8 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647d9ab3b4829894d9ba523eadaf547b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  healthBar: {fileID: 0}
+  attackCollider: {fileID: 0}
 --- !u!50 &8554520066019124000
 Rigidbody2D:
   serializedVersion: 5
@@ -311,6 +293,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2161015764541698634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075644252478395324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81613500e5cbf2e47ac83a8163eb9aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 100
+  _hp: 0
+  animator: {fileID: 0}
+  Healed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Damaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5521528799127740940
 GameObject:
   m_ObjectHideFlags: 0

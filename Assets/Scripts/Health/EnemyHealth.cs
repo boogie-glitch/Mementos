@@ -31,7 +31,10 @@ public class EnemyHealth : MonoBehaviour
 
             if (_hp <= 0)
             {
+                Debug.Log("Destroy called");
                 animator.SetTrigger("Died");
+                Died?.Invoke();
+                Destroy(gameObject);
             }
         }
     }
@@ -48,12 +51,19 @@ public class EnemyHealth : MonoBehaviour
 
     public void HealFull() => Hp = _maxHp;
 
-    public void Kill() => Hp = 0;
+    public void Kill()
+    {
+ Debug.Log("Kill() called");
+        {
+            if (_hp > 0)
+                Hp = 0;
+            else
+                Hp = -1; // ép setter chạy lại
+        }
+    }
+    //   => Hp = 0;
 
     public void Adjust(int value) => Hp = value;
 
-    void OnDead()
-    {
-        Died?.Invoke();
-    }
+    public void OnDead() => Died?.Invoke();
 }
