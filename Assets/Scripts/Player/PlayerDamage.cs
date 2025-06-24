@@ -7,16 +7,16 @@ public class PlayerDamage : MonoBehaviour
 
     // This method is called when the player collides with an enemy
     // It assumes that the enemy has a Health component and a Healthbar component
-   protected void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Enemy"))
+        if (!(other.CompareTag("Enemy") || other.CompareTag("Fireball")))
         {
             return;
         }
 
         if (other.TryGetComponent<EnemyHealth>(out var health))
         {
-            if (other.TryGetComponent<Healthbar>(out var healthbar))
+            if (other.TryGetComponent<EnemyHealthBar>(out var healthbar))
             {
                 healthbar.SetValue(health.Hp - damageAmount); // Assuming the trap deals 10 damage
             }

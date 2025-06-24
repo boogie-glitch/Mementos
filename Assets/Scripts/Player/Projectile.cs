@@ -21,12 +21,20 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        if (hit) return;
+        if (hit)
+        {
+            return;
+        } 
+        
         float movementSpeed = speed * Time.deltaTime * direction;
         transform.Translate(movementSpeed, 0, 0);
 
         lifetime += Time.deltaTime;
-        if (lifetime > 5) gameObject.SetActive(false);
+        if (lifetime > 5)
+        {
+            //gameObject.SetActive(false);
+            Deactivate();
+        }
     }
 
     public void ActivateProjectile()
@@ -37,7 +45,7 @@ public class Projectile : MonoBehaviour
         boxCollider.enabled = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (!(collision.CompareTag("Enemy") || collision.CompareTag("Fireball")))
         {
@@ -49,7 +57,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.TryGetComponent<EnemyHealth>(out var health))
         {
-            if (collision.TryGetComponent<Healthbar>(out var healthbar))
+            if (collision.TryGetComponent<EnemyHealthBar>(out var healthbar))
             {
                 healthbar.SetValue(health.Hp - damage); // Assuming the trap deals 10 damage
             }

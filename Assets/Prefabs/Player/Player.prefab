@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7460779175733522351}
   - component: {fileID: 6429121808060394421}
   - component: {fileID: 327819370124142035}
+  - component: {fileID: 156634823662790769}
   m_Layer: 15
   m_Name: Arrow (4)
   m_TagString: Untagged
@@ -170,9 +171,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &156634823662790769
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343251079345932801}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &671522734725765789
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +289,7 @@ GameObject:
   - component: {fileID: 68839611790313682}
   - component: {fileID: 4371555990554023271}
   - component: {fileID: 2949544652030461100}
+  - component: {fileID: 4739589292731943293}
   m_Layer: 15
   m_Name: Arrow
   m_TagString: Untagged
@@ -418,9 +447,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &4739589292731943293
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787459336579901927}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &901601269668839145
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +490,7 @@ GameObject:
   - component: {fileID: 3482729664858494398}
   - component: {fileID: 8427573026142586406}
   - component: {fileID: 327001335153913393}
+  - component: {fileID: 192943650541164237}
   m_Layer: 15
   m_Name: Arrow (3)
   m_TagString: Untagged
@@ -591,9 +648,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &192943650541164237
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901601269668839145}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1080097371916121006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,6 +1503,7 @@ GameObject:
   - component: {fileID: 2464784841337807261}
   - component: {fileID: 8985903707099072754}
   - component: {fileID: 7517742975549906489}
+  - component: {fileID: 7131174855257910077}
   m_Layer: 15
   m_Name: Arrow (2)
   m_TagString: Untagged
@@ -1576,9 +1661,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &7131174855257910077
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531147115145453162}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1894846543481218721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +1996,7 @@ GameObject:
   - component: {fileID: 2622440933295343516}
   - component: {fileID: 8338218598850603784}
   - component: {fileID: 5632982182096555661}
+  - component: {fileID: 8862475313270323636}
   m_Layer: 15
   m_Name: Arrow (7)
   m_TagString: Untagged
@@ -2041,9 +2154,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &8862475313270323636
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153123014566912605}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3190818842457488649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,7 +2371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17212a2a5c83234aa66647c81bcb57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 50
+  damageAmount: 30
 --- !u!1 &3415858954474479939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2627,6 +2767,7 @@ GameObject:
   - component: {fileID: 1572849557764029291}
   - component: {fileID: 562264841875572922}
   - component: {fileID: 244560573973546351}
+  - component: {fileID: 3190481808484203176}
   m_Layer: 15
   m_Name: Arrow (9)
   m_TagString: Untagged
@@ -2784,9 +2925,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &3190481808484203176
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222551759829476027}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4230172496324178533
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,6 +2968,7 @@ GameObject:
   - component: {fileID: 8182690933048349180}
   - component: {fileID: 7312865662120724067}
   - component: {fileID: 1712134037967404067}
+  - component: {fileID: 5379772021883880534}
   m_Layer: 15
   m_Name: Arrow (1)
   m_TagString: Untagged
@@ -2957,9 +3126,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &5379772021883880534
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230172496324178533}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4268179547655084504
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,6 +4052,7 @@ GameObject:
   - component: {fileID: 8086612363320601131}
   - component: {fileID: 8895210623602384594}
   - component: {fileID: 6179784951124634058}
+  - component: {fileID: 6179591163953936487}
   m_Layer: 15
   m_Name: Arrow (8)
   m_TagString: Untagged
@@ -4013,9 +4210,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &6179591163953936487
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848584225483219130}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7886092594106517367
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,6 +4328,7 @@ GameObject:
   - component: {fileID: 2510332693305715355}
   - component: {fileID: 6178456380232083034}
   - component: {fileID: 6507601766050021683}
+  - component: {fileID: 2805104982579022896}
   m_Layer: 15
   m_Name: Arrow (5)
   m_TagString: Untagged
@@ -4261,9 +4486,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &2805104982579022896
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7907044037377166633}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8236765093838745171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4277,6 +4529,7 @@ GameObject:
   - component: {fileID: 4726216997615264347}
   - component: {fileID: 1949302733485294636}
   - component: {fileID: 7736083215197857336}
+  - component: {fileID: 9031068663016030498}
   m_Layer: 15
   m_Name: Arrow (6)
   m_TagString: Untagged
@@ -4434,9 +4687,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e913dcd5f08a3428e76e3ad1f4bb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 15
   parent: {fileID: 7637479115827226269}
+--- !u!50 &9031068663016030498
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236765093838745171}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8626980328116274388
 GameObject:
   m_ObjectHideFlags: 0

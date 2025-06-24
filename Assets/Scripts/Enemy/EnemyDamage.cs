@@ -9,7 +9,7 @@ public class EnemyDamage : MonoBehaviour
     //     if (collision.tag == "Player")
     //         collision.GetComponent<PlayerHealth>().TakeDamage(damage);
     // }
-    protected void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player"))
         {

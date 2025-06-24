@@ -2,25 +2,15 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField]
-    private PlayerHealth playerHealth; // Reference to the player's health script
-    [SerializeField]
-    private Healthbar healthBar; // Reference to the player's health bar
-    [SerializeField]
-    private Animator animator; // Reference to the player's animator
+    public Collider2D attackCollider; // The collider that represents the attack area
 
-    public void DamagePlayer()
+    public void EnableAttackCollider()
     {
-        // if (PlayerInSight())
-        // // playerHealth.TakeDamage(damage);
-        // {
-            healthBar.SetValue(playerHealth.Hp - 10); // Assuming the trap deals 10 damage
-            playerHealth.Damage(10);
-            if (animator != null)
-            {
-                animator.SetTrigger("Damaged");
-            }
-        // }
+        attackCollider.enabled = true; // Enable the attack collider
+    }
 
+    public void DisableAttackCollider()
+    {
+        attackCollider.enabled = false; // Disable the attack collider
     }
 }

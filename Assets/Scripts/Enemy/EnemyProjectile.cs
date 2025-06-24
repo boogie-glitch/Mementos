@@ -30,13 +30,19 @@ public class EnemyProjectile : EnemyDamage
     }
     private void Update()
     {
-        if (hit) return;
+        if (hit)
+        {
+            return;
+        }
+
         float movementoSpeed = speed * Time.deltaTime;
         transform.Translate(Vector2.right * moveDirection * movementoSpeed);
 
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
-            gameObject.SetActive(false);
+        {
+            Deactivate(); // Deactivate the projectile after a certain time
+        }    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,9 +52,13 @@ public class EnemyProjectile : EnemyDamage
         coll.enabled = false;
 
         if (anim != null)
+        {
             anim.SetTrigger("explode"); //When the object is a fireball explode it
+        }
         else
+        {
             Deactivate(); //When this hits any object deactivate arrow
+        }
     }
     private void Deactivate()
     {

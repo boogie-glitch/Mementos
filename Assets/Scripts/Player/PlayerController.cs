@@ -294,6 +294,10 @@ public class PlayerController : MonoBehaviour
         {
             return; // Stop attacking while dashing or in the air
         }
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            return;
+        }
         if (!isAttacking)
         {
             isAttacking = true;
