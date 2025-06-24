@@ -3,16 +3,26 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    [SerializeField] private Health playerHealth;
-    [SerializeField] private Image totalhealthBar;
-    [SerializeField] private Image currenthealthBar;
+    [SerializeField] private PlayerHealth _health;
+    [SerializeField] private RectTransform _barRect;
+    [SerializeField] private RectMask2D _mask;
+
+    private float _maxRightMask;
+    private float _initialRightMask;
 
     private void Start()
     {
-        totalhealthBar.fillAmount = playerHealth.currentHealth / 10;
+        //x = left, y = bottom, z = right, w = top
+        _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
+        _initialRightMask = _mask.padding.z;
     }
-    private void Update()
+
+    public void SetValue(int newValue)
     {
-        currenthealthBar.fillAmount = playerHealth.currentHealth / 10;
+        var targetWidth = newValue * _maxRightMask / _health.MaxHp;
+        var newRightMask = _maxRightMask + _initialRightMask - targetWidth;
+        var padding = _mask.padding;
+        padding.z = newRightMask;
+        _mask.padding = padding;
     }
 }

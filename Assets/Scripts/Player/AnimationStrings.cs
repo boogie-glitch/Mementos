@@ -11,4 +11,7 @@ internal class AnimationStrings
     internal static  string isOnCeiling = "isOnCeiling";
     internal static  string isDashing = "isDashing";
     internal static  string canMove = "canMove";
+    internal static  string isAttacking = "isAttacking";
+    internal static  string rangeAttack = "rangeAttack";
+    internal static  string isRangeAttack = "isRangeAttack";
 }

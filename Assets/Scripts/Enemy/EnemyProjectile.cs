@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class EnemyProjectile : EnemyDamage
 {
+    [SerializeField] private float damage;
     [SerializeField] private float speed;
     [SerializeField] private float resetTime;
+    [SerializeField] private Transform parent;
     private float lifetime;
     private Animator anim;
     private BoxCollider2D coll;
 
+
     private bool hit;
+    private float moveDirection = 1f;
+
 
     private void Awake()
     {
@@ -25,13 +30,19 @@ public class EnemyProjectile : EnemyDamage
     }
     private void Update()
     {
-        if (hit) return;
-        float movementSpeed = speed * Time.deltaTime;
-        transform.Translate(movementSpeed, 0, 0);
+        if (hit)
+        {
+            return;
+        }
+
+        float movementoSpeed = speed * Time.deltaTime;
+        transform.Translate(Vector2.right * moveDirection * movementoSpeed);
 
         lifetime += Time.deltaTime;
         if (lifetime > resetTime)
-            gameObject.SetActive(false);
+        {
+            Deactivate(); // Deactivate the projectile after a certain time
+        }    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,12 +52,32 @@ public class EnemyProjectile : EnemyDamage
         coll.enabled = false;
 
         if (anim != null)
+        {
             anim.SetTrigger("explode"); //When the object is a fireball explode it
+        }
         else
-            gameObject.SetActive(false); //When this hits any object deactivate arrow
+        {
+            Deactivate(); //When this hits any object deactivate arrow
+        }
     }
     private void Deactivate()
     {
         gameObject.SetActive(false);
+        SetParent();
+    }
+
+
+    public void SetDirection(float direction)
+    {
+        moveDirection = direction;
+        // Nếu muốn lật sprite, có thể lật scale.x ở đây
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * direction;
+        transform.localScale = scale;
+    }
+
+    public void SetParent()
+    {
+        gameObject.transform.parent = parent;
     }
 }

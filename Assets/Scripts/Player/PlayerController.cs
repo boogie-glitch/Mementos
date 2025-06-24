@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     TouchingDirections touchingDirections;
     TrailRenderer tr;
 
-    public static PlayerController Instance ;
+    public static PlayerController Instance;
     // Input action for player movement
 
 
@@ -164,6 +164,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            //moveInput = Vector2.zero; // Stop movement while attacking
+            IsMoveing = false;
+            return;
+        }
         // Handle player movement input
         moveInput = context.ReadValue<Vector2>();
         
@@ -179,7 +185,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         } 
-        if(CanMove)
+        if (CanMove)
         {
             if (moveInput.x > 0 && !IsFacingRignt)
             {
@@ -195,6 +201,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            IsRunning = false; // Stop running while attacking
+            return;
+        }
         // Handle player running input
         if (context.started)
         {
@@ -208,14 +219,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (IsDashing)
+        {
+            return; // Stop jumping while attacking or dashing
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack)) 
+        {
+            return;
+        }
         // Handle player jump input
-        if(context.started && touchingDirections.IsGrounded && !IsDashing && CanMove)
+        if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             canDoubleJump = true; // Reset double jump when grounded
             anim.SetTrigger(AnimationStrings.jumpTrigger);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        if(canDoubleJump && context.started && !touchingDirections.IsGrounded && !IsDashing)
+        if (canDoubleJump && context.started && !touchingDirections.IsGrounded)
         {
             // anim.SetTrigger(AnimationStrings.jump);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -226,12 +245,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing || anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            return; // Stop dashing while attacking or already dashing
+        }
         if (!canAirDash)
         {
             return;
         }
         
-        if (context.started && canDash && !IsDashing)
+        if (context.started && canDash)
         {
             StartCoroutine(DashCoroutine());  
         }        
@@ -267,14 +290,35 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (IsDashing || !touchingDirections.IsGrounded || anim.GetBool(AnimationStrings.isRangeAttack) || !context.started)
         {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-            }
-
+            return; // Stop attacking while dashing or in the air
         }
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            return;
+        }
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            anim.SetBool(AnimationStrings.isAttacking, true);
+        }
+    }
+
+    void OnAttackingFalse()
+    {
+        isAttacking = false;
+    }
+
+    public void OnRangeAttack(InputAction.CallbackContext context)
+    {
+        if (!context.started || anim.GetBool(AnimationStrings.isAttacking) || !touchingDirections.IsGrounded || IsDashing)
+        {
+            return;
+        }
+        anim.SetTrigger(AnimationStrings.rangeAttack);
+        anim.SetBool(AnimationStrings.isRangeAttack, true);
+
     }
 }
 
