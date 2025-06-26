@@ -9,16 +9,17 @@ public class TransitionIdle : StateMachineBehaviour
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        PlayerController.Instance.isMoveAttack = false; // Reset move attack state when exiting the attack state
+        PlayerController.Instance.isAttacking = false;
+        //PlayerController.Instance.anim.SetBool(AnimationStrings.isAttacking, false);
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerController.Instance.isAttacking = false;
-
+        
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
