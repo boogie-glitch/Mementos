@@ -15,7 +15,6 @@ public class EnemyDamage : MonoBehaviour
         {
             return;
         }
-
         if (other.TryGetComponent<PlayerHealth>(out var health))
         {
             if (other.TryGetComponent<Healthbar>(out var healthbar))
@@ -29,7 +28,15 @@ public class EnemyDamage : MonoBehaviour
             {
                 animator.SetTrigger("Damaged");
             }
+
+            if (other.TryGetComponent<PlayerController>(out var playerController))
+            {
+                float xDir = playerController.IsFacingRignt ? -1f : 1f;
+                Vector2 direction = new Vector2(xDir, 0.3f).normalized; // 0.3f giúp nhấc nhẹ lên
+                Vector2 knockbackForce = direction * 10f; // Tăng lực nếu cần
+                float knockbackDuration = 0.2f;
+                playerController.OnKnockback(knockbackForce, knockbackDuration);
+            }
         }
     }
-
 }

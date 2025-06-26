@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance;
     // Input action for player movement
+    [SerializeField]
 
 
     Vector2 moveInput;
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 6f;
     public float jumpForce = 7f;
     public float dashSpeed = 1f;
+    private float knowckTime = 0f; // Duration of knockback effect
+
 
 
     private bool _isMoveing = false;
@@ -35,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump = true;
     private bool canAirDash = true;
 
-
+   
 
     public float CurrentMoveSpeed 
     { 
@@ -147,8 +150,11 @@ public class PlayerController : MonoBehaviour
             canAirDash = true; // Reset air dash when grounded
         }
 
-        
-        
+        if (knowckTime > 0)
+        {
+            knowckTime -= Time.deltaTime;
+            if (knowckTime < 0f) knowckTime = 0f; // Đảm bảo không bị âm
+        }
     }
 
     void FixedUpdate()
@@ -160,7 +166,6 @@ public class PlayerController : MonoBehaviour
         }
         anim.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);  
 
-        
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -305,11 +310,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnAttackingFalse()
-    {
-        isAttacking = false;
-    }
-
     public void OnRangeAttack(InputAction.CallbackContext context)
     {
         if (!context.started || anim.GetBool(AnimationStrings.isAttacking) || !touchingDirections.IsGrounded || IsDashing)
@@ -318,7 +318,45 @@ public class PlayerController : MonoBehaviour
         }
         anim.SetTrigger(AnimationStrings.rangeAttack);
         anim.SetBool(AnimationStrings.isRangeAttack, true);
+    }
 
+    public void OnKnockback(Vector2 force, float duration)
+    {
+       if (knowckTime > 0f)
+       {
+            return; // Đang cooldown, không nhận knockback
+       }
+
+    knowckTime = 1f; // 1 giây cooldown
+    StartCoroutine(KnockbackCoroutine(force, duration));
+    }
+
+    private IEnumerator KnockbackCoroutine(Vector2 force, float duration)
+    {
+        IsMoveing = false;
+        IsRunning = false;
+        IsDashing = false;
+
+        rb.linearVelocity = Vector2.zero; // Reset velocity
+        rb.AddForce(force, ForceMode2D.Impulse); // Apply knockback force
+        // rb.gravityScale = 0f; // Disable gravity during knockback
+
+        yield return new WaitForSeconds(0.1f); // Adjust the duration as needed
+
+        // rb.gravityScale = 1f; // Re-enable gravity after knockback
+
+        yield return new WaitForSeconds(duration - 0.1f); // Wait for the remaining duration
+        rb.linearVelocity = Vector2.zero; // Reset velocity after knockback
+        IsMoveing = true; // Re-enable movement after knockback
+        IsRunning = false; // Reset running state
+        IsDashing = false; // Reset dashing state
+
+        anim.SetBool(AnimationStrings.isAttacking, false); // Reset attacking state
+        isAttacking = false; // Reset attacking state
+
+        anim.SetBool(AnimationStrings.isRangeAttack, false); // Reset ranged attack state
+        anim.SetBool(AnimationStrings.canMove, true); // Re-enable movement
+    
     }
 }
 
