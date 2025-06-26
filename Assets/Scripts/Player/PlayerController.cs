@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Rigidbody2D) ,typeof(TouchingDirections))]
 
@@ -16,7 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
 
 
-    Vector2 moveInput;
+    public Vector2 moveInput;
+    private float attackMoveSpeed = 0.5f;
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
     public float jumpForce = 7f;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private bool _isFacingRignt = true;
     private bool _isDashing = false;
     public bool isAttacking = false;
+    public bool isMoveAttack = false;
+    public bool canTurn = true; // Allow turning while moving
 
 
     [SerializeField] private float dashTime = 0.2f;
@@ -40,28 +44,30 @@ public class PlayerController : MonoBehaviour
 
    
 
-    public float CurrentMoveSpeed 
-    { 
+    public float CurrentMoveSpeed
+    {
         get
         {
-            if(CanMove)
+            if (CanMove)
             {
-                if (!(IsMoveing && !touchingDirections.IsOnWall)) 
+                if (!(IsMoveing && !touchingDirections.IsOnWall))
                 {
                     return 0f;
                 }
-            
-                if(IsRunning)
+                if (isMoveAttack)
+                {
+                    return attackMoveSpeed;
+                }
+                if (IsRunning)
                 {
                     return runSpeed;
-                } 
-                return walkSpeed;    
                 }
+                return walkSpeed;
+            }
             else
             {
                 return 0f;
             }
-                 
         }
     }
 
@@ -145,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(touchingDirections.IsGrounded)
+        if (touchingDirections.IsGrounded)
         {
             canAirDash = true; // Reset air dash when grounded
         }
@@ -155,6 +161,15 @@ public class PlayerController : MonoBehaviour
             knowckTime -= Time.deltaTime;
             if (knowckTime < 0f) knowckTime = 0f; // Đảm bảo không bị âm
         }
+        //if (isMoveAttack)
+        //{
+        //    // Simulate the "Performed" phase by directly calling OnMove with the current moveInput
+        //    var simulatedContext = new InputAction.CallbackContext();
+        //    moveInput = simulatedContext.ReadValue<Vector2>();
+        //    OnMove(simulatedContext);
+           
+        //}
+
     }
 
     void FixedUpdate()
@@ -169,11 +184,19 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (anim.GetBool(AnimationStrings.isRangeAttack))
         {
             //moveInput = Vector2.zero; // Stop movement while attacking
             IsMoveing = false;
             return;
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            isMoveAttack = true;
         }
         // Handle player movement input
         moveInput = context.ReadValue<Vector2>();
@@ -184,12 +207,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void SetFacingDirection(Vector2 moveInput)
+    public void SetFacingDirection(Vector2 moveInput)
     {
         if (IsDashing)
         {
             return;
-        } 
+        }
+        if (!canTurn)
+        {
+            return; // Do not change direction if canTurn is false
+        }
         if (CanMove)
         {
             if (moveInput.x > 0 && !IsFacingRignt)
@@ -206,6 +233,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
         {
             IsRunning = false; // Stop running while attacking
@@ -224,6 +255,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (IsDashing)
         {
             return; // Stop jumping while attacking or dashing
@@ -250,6 +285,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing || anim.GetBool(AnimationStrings.isRangeAttack))
         {
             return; // Stop dashing while attacking or already dashing
@@ -295,6 +334,10 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (IsDashing || !touchingDirections.IsGrounded || anim.GetBool(AnimationStrings.isRangeAttack) || !context.started)
         {
             return; // Stop attacking while dashing or in the air
@@ -302,6 +345,11 @@ public class PlayerController : MonoBehaviour
         if (anim.GetBool(AnimationStrings.isAttacking))
         {
             return;
+        }
+        if (IsMoveing)
+        {
+            //IsMoveing = false; // Stop moving while attacking
+            isMoveAttack = true; // Set move attack flag
         }
         if (!isAttacking)
         {
@@ -312,6 +360,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangeAttack(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (!context.started || anim.GetBool(AnimationStrings.isAttacking) || !touchingDirections.IsGrounded || IsDashing)
         {
             return;
