@@ -9,6 +9,10 @@ public class EnemyHealth : MonoBehaviour
     private int _hp;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private PlayerExp playerExp; // Assuming this is used for some interaction, otherwise it can be removed
+    [SerializeField]
+    private int _expOnDeath = 30; // Experience to give on death, if applicable
 
     public int MaxHp => _maxHp;
 
@@ -54,6 +58,7 @@ public class EnemyHealth : MonoBehaviour
 
     void OnDead()
     {
+        playerExp?.Gain(_expOnDeath); // Assuming you want to give some experience on enemy death
         Died?.Invoke();
     }
 }

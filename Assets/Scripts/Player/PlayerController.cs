@@ -152,6 +152,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if (TryGetComponent<PlayerExp>(out var playerExp))
+        {
+            playerExp.SetExp(playerExp.Exp); // Initialize player experience to 0
+            playerExp.SetLevel(1); // Initialize player level to 1
+        }
         if (playerPositionSO.lastPlayerPosition != Vector3.zero && playerPositionSO.isGoBack)
         {
             // If the player is going back, set the position to the last saved position
@@ -354,10 +359,10 @@ public class PlayerController : MonoBehaviour
         {
             return; // Stop attacking while dashing or in the air
         }
-        if (anim.GetBool(AnimationStrings.isAttacking))
-        {
-            return;
-        }
+        //if (anim.GetBool(AnimationStrings.isAttacking))
+        //{
+        //    return;
+        //}
         if (IsMoveing)
         {
             //IsMoveing = false; // Stop moving while attacking
@@ -386,13 +391,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnKnockback(Vector2 force, float duration)
     {
-       if (knowckTime > 0f)
-       {
+        if (knowckTime > 0f || anim.GetBool(AnimationStrings.isAttacking))
+        {
             return; // Đang cooldown, không nhận knockback
-       }
+        }
 
-    knowckTime = 1f; // 1 giây cooldown
-    StartCoroutine(KnockbackCoroutine(force, duration));
+        isAttacking = false; // Reset attacking state
+        isMoveAttack = false; // Reset move attack state
+        //anim.SetBool(AnimationStrings.isAttacking, false); // Reset attacking animation
+        anim.SetBool(AnimationStrings.canMove, false);
+        knowckTime = 1f; // 1 giây cooldown
+        StartCoroutine(KnockbackCoroutine(force, duration));
     }
 
     private IEnumerator KnockbackCoroutine(Vector2 force, float duration)
@@ -411,9 +420,9 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(duration - 0.1f); // Wait for the remaining duration
         rb.linearVelocity = Vector2.zero; // Reset velocity after knockback
-        IsMoveing = true; // Re-enable movement after knockback
-        IsRunning = false; // Reset running state
-        IsDashing = false; // Reset dashing state
+        //IsMoveing = true; // Re-enable movement after knockback
+        //IsRunning = false; // Reset running state
+        //IsDashing = false; // Reset dashing state
 
         anim.SetBool(AnimationStrings.isAttacking, false); // Reset attacking state
         isAttacking = false; // Reset attacking state
@@ -421,6 +430,13 @@ public class PlayerController : MonoBehaviour
         anim.SetBool(AnimationStrings.isRangeAttack, false); // Reset ranged attack state
         anim.SetBool(AnimationStrings.canMove, true); // Re-enable movement
     
+    }
+    public void OnHurt()
+    {
+        isMoveAttack = false; // Reset move attack state
+        isAttacking = false; // Reset attacking state
+        IsMoveing = false; // Stop moving
+        IsRunning = false; // Stop running
     }
 }
 

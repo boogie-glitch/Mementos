@@ -774,6 +774,10 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6065055655270228742, guid: d6ff8ceb3c4f0ad4e90f0aec90f0c427, type: 3}
+      propertyPath: playerExp
+      value: 
+      objectReference: {fileID: 2134356933}
+    - target: {fileID: 6065055655270228742, guid: d6ff8ceb3c4f0ad4e90f0aec90f0c427, type: 3}
       propertyPath: Died.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1954977402}
@@ -874,9 +878,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 3074580394139928138, guid: daf85399394120f46a876cabac4b24cf, type: 3}
+      propertyPath: _playerExp
+      value: 
+      objectReference: {fileID: 2134356933}
     - target: {fileID: 3211571863556521591, guid: daf85399394120f46a876cabac4b24cf, type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527570140019679076, guid: daf85399394120f46a876cabac4b24cf, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4299965216984566016, guid: daf85399394120f46a876cabac4b24cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,6 +938,10 @@ PrefabInstance:
       propertyPath: damageAmount
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5120849422306630568, guid: daf85399394120f46a876cabac4b24cf, type: 3}
+      propertyPath: _playerExp
+      value: 
+      objectReference: {fileID: 2134356933}
     - target: {fileID: 5266684632295011317, guid: daf85399394120f46a876cabac4b24cf, type: 3}
       propertyPath: m_Layer
       value: 14
@@ -2013,6 +2029,10 @@ PrefabInstance:
       value: EnemyPatrol (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7604006352745622064, guid: c7e18de4fa95de541866b24ee6e371f8, type: 3}
+      propertyPath: playerExp
+      value: 
+      objectReference: {fileID: 2134356933}
+    - target: {fileID: 7604006352745622064, guid: c7e18de4fa95de541866b24ee6e371f8, type: 3}
       propertyPath: Healed.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2110,6 +2130,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8219320821880882910, guid: daf85399394120f46a876cabac4b24cf, type: 3}
   m_PrefabInstance: {fileID: 905336017}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134356933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3434178122827642655, guid: daf85399394120f46a876cabac4b24cf, type: 3}
+  m_PrefabInstance: {fileID: 905336017}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f1c92b8e069ce41bacbbc985420f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4784160865572096545
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,9 +31,15 @@ public class EnemyDamage : MonoBehaviour
 
             if (other.TryGetComponent<PlayerController>(out var playerController))
             {
+                if (playerController.anim.GetBool(AnimationStrings.isAttacking))
+                {
+                    playerController.canTurn = true;
+                    return; 
+                }
+                playerController.isMoveAttack = false; 
                 float xDir = playerController.IsFacingRignt ? -1f : 1f;
-                Vector2 direction = new Vector2(xDir, 0.3f).normalized; // 0.3f giúp nhấc nhẹ lên
-                Vector2 knockbackForce = direction * 10f; // Tăng lực nếu cần
+                Vector2 direction = new Vector2(xDir, 0.3f).normalized;
+                Vector2 knockbackForce = direction * 10f;
                 float knockbackDuration = 0.2f;
                 playerController.OnKnockback(knockbackForce, knockbackDuration);
             }
