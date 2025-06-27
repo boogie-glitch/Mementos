@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     TrailRenderer tr;
 
     public static PlayerController Instance;
+    [SerializeField] private PlayerPositionSO playerPositionSO;
     // Input action for player movement
     [SerializeField]
 
@@ -147,6 +148,17 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         tr = GetComponent<TrailRenderer>();
         Instance = this;
+    }
+
+    void Start()
+    {
+        if (playerPositionSO.lastPlayerPosition != Vector3.zero && playerPositionSO.isGoBack)
+        {
+            // If the player is going back, set the position to the last saved position
+            transform.position = playerPositionSO.lastPlayerPosition;
+            playerPositionSO.isGoBack = false; // Reset the flag after using it
+        }
+        
     }
 
     void Update()

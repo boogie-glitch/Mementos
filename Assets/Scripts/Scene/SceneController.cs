@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+
 
 public class SceneController : MonoBehaviour
 {
+    public Vector3 lastPlayerPosition;
+
     public static SceneController instance;
+
+    public PlayerPositionSO playerPositionSO;
 
     private void Awake()
     {
@@ -24,10 +30,14 @@ public class SceneController : MonoBehaviour
 
     public void PreviousLevel()
     {
+        playerPositionSO.isGoBack = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        
     }
     public void LoadLevel(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
+
+   
 }
