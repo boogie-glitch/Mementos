@@ -4,6 +4,11 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] 
     private GameObject pauseMenuUI; // Reference to the pause menu UI GameObject
+    [SerializeField]
+    private PlayerHealth playerHealth; // Reference to the PlayerHealth script (if needed for health management)
+    [SerializeField]
+    private PlayerExp PlayerExp; // Reference to the PlayerExp script (if needed for experience management)
+    
     public static bool GameIsPaused = false; // Static variable to track if the game is paused
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +44,21 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false); // Hide the pause menu UI
         Time.timeScale = 1f; // Resume the game by setting time scale back to 1
         GameIsPaused = false; // Set the static variable to false indicating the game is not paused
+    }
+
+    public void SaveGame()
+    {
+        // Call the SavePlayer method from the SaveSystem class to save the player's data
+        SaveSystem.SavePlayer(new PlayerData(
+            PlayerExp.Level, 
+            PlayerExp.Exp, 
+            PlayerExp.MaxExp,
+            playerHealth.Hp, 
+            playerHealth.MaxHp, 
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        ));
+        Debug.Log("Game saved successfully!"); // Log a message to the console
+        ResumeGame(); // Resume the game after saving
     }
 
     public void ReturnMainMenu()

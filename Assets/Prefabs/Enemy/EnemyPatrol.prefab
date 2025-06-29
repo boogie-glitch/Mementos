@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 5717445705634602525}
   - component: {fileID: 923748501510329451}
   - component: {fileID: 2455226886935579569}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: MeleeAttackHitbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -826,6 +826,8 @@ MonoBehaviour:
   _maxHp: 100
   _hp: 0
   animator: {fileID: 8527143481459095714}
+  playerExp: {fileID: 0}
+  _expOnDeath: 30
   Healed:
     m_PersistentCalls:
       m_Calls:
@@ -859,7 +861,7 @@ MonoBehaviour:
   Died:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7326869951468389728}
+      - m_Target: {fileID: 8836721008285470178}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6

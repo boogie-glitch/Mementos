@@ -11,6 +11,8 @@ public class PlayerExp : MonoBehaviour
     private int _level = 1;
     [SerializeField]
     private int _expIncreasePerLevel = 50;
+    [SerializeField]
+    private PlayerStatus playerStatus;
 
     public int MaxExp => _maxExp;
     public int Exp
@@ -43,13 +45,62 @@ public class PlayerExp : MonoBehaviour
     public UnityEvent<int> Lost;
     public UnityEvent<int> LeveledUp;
 
-    private void Awake() => _exp = 0;
+    private void Awake()
+    {
+        if(playerStatus != null && playerStatus.maxExp > 0)
+        {
+            _maxExp = playerStatus.maxExp;
+            _exp = playerStatus.exp;
+            _level = playerStatus.level;
+        }
+        else if(playerStatus != null)
+        {
+            playerStatus.maxExp = _maxExp;
+            playerStatus.exp = _exp;
+            playerStatus.level = _level;
+        }
+    }
 
-    public void Gain(int amount) => Exp += amount;
+    private void Start()
+    {
+        Lost?.Invoke(_exp);
+    }
 
-    public void Lose(int amount) => Exp -= amount;
+    public void Gain(int amount)
+    {
+        Exp += amount;
+        
+        if (playerStatus != null)
+        {
+            playerStatus.exp = _exp;
+            playerStatus.maxExp = _maxExp;
+            playerStatus.level = _level;
+        }
+    }
 
-    public void SetExp(int value) => Exp = value;
+    public void Lose(int amount)
+    {
+        Exp -= amount;
+
+        if (playerStatus != null)
+        {
+            playerStatus.exp = _exp;
+            playerStatus.maxExp = _maxExp;
+            playerStatus.level = _level;
+        }
+    }
+
+    public void SetExp(int value)
+    {
+        Exp = value;
+
+        if (playerStatus != null)
+        {
+            playerStatus.exp = _exp;
+            playerStatus.maxExp = _maxExp;
+            playerStatus.level = _level;
+        }
+    }
 
     public void SetLevel(int level)
     {
@@ -57,6 +108,13 @@ public class PlayerExp : MonoBehaviour
         _level = level;
         _exp = 0;
         _maxExp = _expIncreasePerLevel * (_level - 1) + 100; // Assuming the first level starts with 100 exp
+    
+        if (playerStatus != null)
+        {
+            playerStatus.exp = _exp;
+            playerStatus.maxExp = _maxExp;
+            playerStatus.level = _level;
+        }
     }
 
     private void LevelUp()
@@ -65,5 +123,12 @@ public class PlayerExp : MonoBehaviour
         SetExp(_exp - _maxExp);
         _maxExp += _expIncreasePerLevel;
         LeveledUp?.Invoke(_level);
+
+        if (playerStatus != null)
+        {
+            playerStatus.exp = _exp;
+            playerStatus.maxExp = _maxExp;
+            playerStatus.level = _level;
+        }
     }
 }

@@ -28,8 +28,8 @@ TagManager:
   - PlayerDamage
   - Arrow
   - Menu
-  - 
-  - 
+  - Loading
+  - LoadingAnimation
   - 
   - 
   - 
@@ -94,6 +94,9 @@ TagManager:
     locked: 0
   - name: Arrow
     uniqueID: 1654529631
+    locked: 0
+  - name: Loading
+    uniqueID: 1225380435
     locked: 0
   m_RenderingLayers:
   - Default

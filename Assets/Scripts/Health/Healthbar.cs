@@ -15,6 +15,8 @@ public class Healthbar : MonoBehaviour
         //x = left, y = bottom, z = right, w = top
         _maxRightMask = _barRect.rect.width - _mask.padding.x - _mask.padding.z;
         _initialRightMask = _mask.padding.z;
+
+        
     }
 
     public void SetValue(int newValue)

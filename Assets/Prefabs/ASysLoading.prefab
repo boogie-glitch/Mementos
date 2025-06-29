@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6574064296394699339
+--- !u!1 &7190488841555189863
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1849067743199917622}
-  - component: {fileID: 5335531482230445053}
+  - component: {fileID: 3738549382341950651}
+  - component: {fileID: 3108889171951238817}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: ASysLoading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1849067743199917622
+--- !u!4 &3738549382341950651
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6574064296394699339}
+  m_GameObject: {fileID: 7190488841555189863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.99729, y: -7.630846, z: -0.015526044}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5335531482230445053
+--- !u!114 &3108889171951238817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6574064296394699339}
+  m_GameObject: {fileID: 7190488841555189863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178560bf2ff36d345bdcf3bc24cde2e5, type: 3}
+  m_Script: {fileID: 11500000, guid: a0400eb6de5470446ad592aa2a4a6276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastPlayerPosition: {x: 0, y: 0, z: 0}
-  playerStatus: {fileID: 11400000, guid: 0463540f3b8388641a1ca4691368e1af, type: 2}
-  playerPositionSO: {fileID: 11400000, guid: 8d88713aa6d4a8c42a72536a0916a7ce, type: 2}
+  loadingScreen: {fileID: 0}
+  loadingBar: {fileID: 0}
+  waitTimeAfterLoad: 5
+  minLoadingTime: 2
+  loadingBarMaxValue: 4.81

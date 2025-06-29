@@ -8,6 +8,8 @@ public class SceneController : MonoBehaviour
     public Vector3 lastPlayerPosition;
 
     public static SceneController instance;
+    [SerializeField]
+    private PlayerStatus playerStatus;
 
     public PlayerPositionSO playerPositionSO;
 
@@ -15,6 +17,7 @@ public class SceneController : MonoBehaviour
     {
         if (instance == null)
         {
+            playerStatus.sceneName = SceneManager.GetActiveScene().name;
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -34,7 +37,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         
     }
-    public void LoadLevel(string sceneName)
+    public static void LoadLevel(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName);
     }
