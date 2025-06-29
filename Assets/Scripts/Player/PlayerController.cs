@@ -11,14 +11,16 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     TouchingDirections touchingDirections;
     TrailRenderer tr;
+    PlayerHealth playerHealth;
 
     public static PlayerController Instance;
-    [SerializeField] private PlayerPositionSO playerPositionSO;
-    // Input action for player movement
+    [SerializeField] 
+    private PlayerPositionSO playerPositionSO;
+  
+    public PlayerStatus playerStatus;
     [SerializeField]
-
-
-    public Vector2 moveInput;
+    public Vector2 moveInput
+    ;
     private float attackMoveSpeed = 0.5f;
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
@@ -147,16 +149,37 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         tr = GetComponent<TrailRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
         Instance = this;
+        // if (!playerStatus)
+        // {
+        //     return;
+        // }
+        // playerHealth.Damaged?.Invoke(playerStatus.hp);
+        //playerHealth.Healed.AddListener(SetValue);
     }
 
     void Start()
     {
-        if (TryGetComponent<PlayerExp>(out var playerExp))
-        {
-            playerExp.SetExp(playerExp.Exp); // Initialize player experience to 0
-            playerExp.SetLevel(1); // Initialize player level to 1
-        }
+        // if(playerHealth)
+        // {
+        //     if(playerStatus != null)
+        //     {
+        // //         playerHealth.MaxHp = playerStatus.maxHp;
+        // //         playerHealth.Hp = playerStatus.hp;
+        //         playerHealth.Damage(playerHealth.MaxHp - playerHealth.Hp); // Initialize health bar
+        //     }
+        //     else
+        //     {
+        //         playerHealth.MaxHp = 100; // Default max health
+        //         playerHealth.Hp = 100; // Default current health
+        //     }
+        // }
+        // if (TryGetComponent<PlayerExp>(out var playerExp))
+        // {
+        //     playerExp.SetExp(playerExp.Exp); // Initialize player experience to 0
+        //     playerExp.SetLevel(1); // Initialize player level to 1
+        // }
         if (playerPositionSO.lastPlayerPosition != Vector3.zero && playerPositionSO.isGoBack)
         {
             // If the player is going back, set the position to the last saved position

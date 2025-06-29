@@ -9,13 +9,18 @@ public class PlayerHealth : MonoBehaviour
     private int _hp;
     [SerializeField]
     private Animator animator;
-
-    public int MaxHp => _maxHp;
-
+    [SerializeField] private PlayerStatus playerStatus; // Kéo asset vào Inspector
+    [SerializeField] private Loading loading; // Kéo asset vào Inspector
+    
+    public int MaxHp
+    {
+        get => _maxHp;
+        set => _maxHp = value; // Thêm setter này để có thể gán MaxHp từ ngoài
+    }
     public int Hp
     {
         get => _hp;
-        private set
+        set
         {
             var isDamage = value < _hp;
             _hp = Mathf.Clamp(value, 0, _maxHp);
@@ -40,12 +45,47 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent<int> Damaged;
     public UnityEvent Died;
 
-    private void Awake() => _hp = _maxHp;
+    private void Awake() 
+    {
+        _hp = _maxHp;
 
-    public void Damage(int amount) => Hp -= amount;
+        if (playerStatus != null && playerStatus.maxHp > 0)
+        {
+            _maxHp = playerStatus.maxHp;
+            _hp = playerStatus.hp;
+        }
+        else if (playerStatus != null)
+        {
+            playerStatus.maxHp = _maxHp;
+            playerStatus.hp = _hp;
+        }        
+    }
 
-    public void Heal(int amount) => Hp += amount;
+    private void Start()
+    {
+        Damaged?.Invoke(_hp);
+    }
 
+    public void Damage(int amount)
+    {
+        Hp -= amount;
+
+        if(playerStatus != null)
+        {   
+            playerStatus.hp = _hp;
+            playerStatus.maxHp = _maxHp;
+        }
+    }
+    public void Heal(int amount)
+    {
+        Hp += amount;
+
+        if (playerStatus != null)
+        {
+            playerStatus.hp = _hp;
+            playerStatus.maxHp = _maxHp;
+        }
+    }
     public void HealFull() => Hp = _maxHp;
 
     public void Kill() => Hp = 0;
@@ -55,5 +95,7 @@ public class PlayerHealth : MonoBehaviour
     void OnDead()
     {
         Died?.Invoke();
+        playerStatus.hp = playerStatus.maxHp; // Reset HP to max when dead
+        loading.LoadLevelBtn(playerStatus.sceneName); // Load the scene
     }
 }
