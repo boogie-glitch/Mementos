@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(Rigidbody2D) ,typeof(TouchingDirections))]
 
@@ -10,16 +11,23 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     TouchingDirections touchingDirections;
     TrailRenderer tr;
+    PlayerHealth playerHealth;
 
-    public static PlayerController Instance ;
-    // Input action for player movement
-
-
-    Vector2 moveInput;
+    public static PlayerController Instance;
+    [SerializeField] 
+    private PlayerPositionSO playerPositionSO;
+  
+    public PlayerStatus playerStatus;
+    [SerializeField]
+    public Vector2 moveInput
+    ;
+    private float attackMoveSpeed = 0.5f;
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
     public float jumpForce = 7f;
     public float dashSpeed = 1f;
+    private float knowckTime = 0f; // Duration of knockback effect
+
 
 
     private bool _isMoveing = false;
@@ -27,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private bool _isFacingRignt = true;
     private bool _isDashing = false;
     public bool isAttacking = false;
+    public bool isMoveAttack = false;
+    public bool canTurn = true; // Allow turning while moving
 
 
     [SerializeField] private float dashTime = 0.2f;
@@ -35,30 +45,32 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump = true;
     private bool canAirDash = true;
 
+   
 
-
-    public float CurrentMoveSpeed 
-    { 
+    public float CurrentMoveSpeed
+    {
         get
         {
-            if(CanMove)
+            if (CanMove)
             {
-                if (!(IsMoveing && !touchingDirections.IsOnWall)) 
+                if (!(IsMoveing && !touchingDirections.IsOnWall))
                 {
                     return 0f;
                 }
-            
-                if(IsRunning)
+                if (isMoveAttack)
+                {
+                    return attackMoveSpeed;
+                }
+                if (IsRunning)
                 {
                     return runSpeed;
-                } 
-                return walkSpeed;    
                 }
+                return walkSpeed;
+            }
             else
             {
                 return 0f;
             }
-                 
         }
     }
 
@@ -137,18 +149,48 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         tr = GetComponent<TrailRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
         Instance = this;
+        // if (!playerStatus)
+        // {
+        //     return;
+        // }
+        // playerHealth.Damaged?.Invoke(playerStatus.hp);
+        //playerHealth.Healed.AddListener(SetValue);
+    }
+
+    void Start()
+    {
+        if (playerPositionSO.lastPlayerPosition != Vector3.zero && playerPositionSO.isGoBack)
+        {
+            // If the player is going back, set the position to the last saved position
+            transform.position = playerPositionSO.lastPlayerPosition;
+            playerPositionSO.isGoBack = false; // Reset the flag after using it
+        }
+        
     }
 
     void Update()
     {
-        if(touchingDirections.IsGrounded)
+        if (touchingDirections.IsGrounded)
         {
             canAirDash = true; // Reset air dash when grounded
         }
 
-        
-        
+        if (knowckTime > 0)
+        {
+            knowckTime -= Time.deltaTime;
+            if (knowckTime < 0f) knowckTime = 0f; // Đảm bảo không bị âm
+        }
+        //if (isMoveAttack)
+        //{
+        //    // Simulate the "Performed" phase by directly calling OnMove with the current moveInput
+        //    var simulatedContext = new InputAction.CallbackContext();
+        //    moveInput = simulatedContext.ReadValue<Vector2>();
+        //    OnMove(simulatedContext);
+           
+        //}
+
     }
 
     void FixedUpdate()
@@ -160,10 +202,23 @@ public class PlayerController : MonoBehaviour
         }
         anim.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);  
 
-        
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            //moveInput = Vector2.zero; // Stop movement while attacking
+            IsMoveing = false;
+            return;
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking))
+        {
+            isMoveAttack = true;
+        }
         // Handle player movement input
         moveInput = context.ReadValue<Vector2>();
         
@@ -173,13 +228,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void SetFacingDirection(Vector2 moveInput)
+    public void SetFacingDirection(Vector2 moveInput)
     {
         if (IsDashing)
         {
             return;
-        } 
-        if(CanMove)
+        }
+        if (!canTurn)
+        {
+            return; // Do not change direction if canTurn is false
+        }
+        if (CanMove)
         {
             if (moveInput.x > 0 && !IsFacingRignt)
             {
@@ -195,6 +254,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            IsRunning = false; // Stop running while attacking
+            return;
+        }
         // Handle player running input
         if (context.started)
         {
@@ -208,14 +276,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (IsDashing)
+        {
+            return; // Stop jumping while attacking or dashing
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking) || anim.GetBool(AnimationStrings.isRangeAttack)) 
+        {
+            return;
+        }
         // Handle player jump input
-        if(context.started && touchingDirections.IsGrounded && !IsDashing && CanMove)
+        if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             canDoubleJump = true; // Reset double jump when grounded
             anim.SetTrigger(AnimationStrings.jumpTrigger);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        if(canDoubleJump && context.started && !touchingDirections.IsGrounded && !IsDashing)
+        if (canDoubleJump && context.started && !touchingDirections.IsGrounded)
         {
             // anim.SetTrigger(AnimationStrings.jump);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -226,12 +306,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (anim.GetBool(AnimationStrings.isAttacking) || IsDashing || anim.GetBool(AnimationStrings.isRangeAttack))
+        {
+            return; // Stop dashing while attacking or already dashing
+        }
         if (!canAirDash)
         {
             return;
         }
         
-        if (context.started && canDash && !IsDashing)
+        if (context.started && canDash)
         {
             StartCoroutine(DashCoroutine());  
         }        
@@ -267,14 +355,92 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (PauseMenu.GameIsPaused)
         {
-            if (!isAttacking)
-            {
-                isAttacking = true;
-            }
-
+            return;
         }
+        if (IsDashing || !touchingDirections.IsGrounded || anim.GetBool(AnimationStrings.isRangeAttack) || !context.started)
+        {
+            return; // Stop attacking while dashing or in the air
+        }
+        //if (anim.GetBool(AnimationStrings.isAttacking))
+        //{
+        //    return;
+        //}
+        if (IsMoveing)
+        {
+            //IsMoveing = false; // Stop moving while attacking
+            isMoveAttack = true; // Set move attack flag
+        }
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            anim.SetBool(AnimationStrings.isAttacking, true);
+        }
+    }
+
+    public void OnRangeAttack(InputAction.CallbackContext context)
+    {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
+        if (!context.started || anim.GetBool(AnimationStrings.isAttacking) || !touchingDirections.IsGrounded || IsDashing)
+        {
+            return;
+        }
+        anim.SetTrigger(AnimationStrings.rangeAttack);
+        anim.SetBool(AnimationStrings.isRangeAttack, true);
+    }
+
+    public void OnKnockback(Vector2 force, float duration)
+    {
+        if (knowckTime > 0f || anim.GetBool(AnimationStrings.isAttacking))
+        {
+            return; // Đang cooldown, không nhận knockback
+        }
+
+        isAttacking = false; // Reset attacking state
+        isMoveAttack = false; // Reset move attack state
+        //anim.SetBool(AnimationStrings.isAttacking, false); // Reset attacking animation
+        anim.SetBool(AnimationStrings.canMove, false);
+        knowckTime = 1f; // 1 giây cooldown
+        StartCoroutine(KnockbackCoroutine(force, duration));
+    }
+
+    private IEnumerator KnockbackCoroutine(Vector2 force, float duration)
+    {
+        IsMoveing = false;
+        IsRunning = false;
+        IsDashing = false;
+
+        rb.linearVelocity = Vector2.zero; // Reset velocity
+        rb.AddForce(force, ForceMode2D.Impulse); // Apply knockback force
+        // rb.gravityScale = 0f; // Disable gravity during knockback
+
+        yield return new WaitForSeconds(0.1f); // Adjust the duration as needed
+
+        // rb.gravityScale = 1f; // Re-enable gravity after knockback
+
+        yield return new WaitForSeconds(duration - 0.1f); // Wait for the remaining duration
+        rb.linearVelocity = Vector2.zero; // Reset velocity after knockback
+        //IsMoveing = true; // Re-enable movement after knockback
+        //IsRunning = false; // Reset running state
+        //IsDashing = false; // Reset dashing state
+
+        anim.SetBool(AnimationStrings.isAttacking, false); // Reset attacking state
+        isAttacking = false; // Reset attacking state
+
+        anim.SetBool(AnimationStrings.isRangeAttack, false); // Reset ranged attack state
+        anim.SetBool(AnimationStrings.canMove, true); // Re-enable movement
+    
+    }
+    public void OnHurt()
+    {
+        isMoveAttack = false; // Reset move attack state
+        isAttacking = false; // Reset attacking state
+        IsMoveing = false; // Stop moving
+        IsRunning = false; // Stop running
     }
 }
 

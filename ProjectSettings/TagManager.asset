@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Ground
+  - CameraBounds
+  - HPBar
+  - Trap
+  - Fireball
   layers:
   - Default
   - TransparentFX
@@ -13,19 +17,19 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - Player
+  - Trap
   - Enemy
-  - 
+  - EnemyDamage
+  - Player
+  - CameraBounds
+  - Ground
   - MovementPhysic
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - FireBall
+  - PlayerDamage
+  - Arrow
+  - Menu
+  - Loading
+  - LoadingAnimation
   - 
   - 
   - 
@@ -84,6 +88,15 @@ TagManager:
     locked: 0
   - name: FinishPoint
     uniqueID: 3487718329
+    locked: 0
+  - name: Trap
+    uniqueID: 2695429903
+    locked: 0
+  - name: Arrow
+    uniqueID: 1654529631
+    locked: 0
+  - name: Loading
+    uniqueID: 1225380435
     locked: 0
   m_RenderingLayers:
   - Default
